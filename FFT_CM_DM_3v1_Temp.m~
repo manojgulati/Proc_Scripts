@@ -95,9 +95,9 @@ subplot(2,1,1);
 plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % semilogx(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-DM|(dBm)');
+ylabel('Amplitude|Y-CM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI {',Path2,'} '));
-legend('DM EMI');
+legend('CM EMI');
 ylim([-140 -20]);
 xlim([0 1]);
 grid on;
@@ -106,11 +106,11 @@ subplot(2,1,2);
 plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-CM|(dBm)');
+ylabel('Amplitude|Y-DM|(dBm)');
 xlabel('Frequency (MHz)');
 ylim([-140 -20]);
 xlim([0 1]);
-legend('CM EMI');
+legend('DM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
