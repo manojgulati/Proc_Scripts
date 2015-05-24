@@ -58,13 +58,13 @@ while(index<No_of_traces+1)
     
     % load Appliance data for training
     load(strcat(Path1,Path2,Path3,Path9,int2str(index),'.mat'));
-    CPU1 = [CPU1 matrix(:,1)];
+    PRT1 = [PRT1 matrix(:,1)];
     
 index=index+1;
 end
 
 % Data for KNN training
-X = [BGN'; LC1'; LCD'; CFL1'; CPU'; PRT';];
+X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1';];
 % Labels for KNN training
 Y = [ones(50,1); 2*ones(50,1); 3*ones(50,1); 4*ones(50,1); 5*ones(50,1); 6*ones(50,1);];
 
@@ -103,12 +103,13 @@ while(index<No_of_traces+1)
     
     % load Appliance data for testing
     load(strcat(Path1,Path2,Path3,Path9,int2str(index),'.mat'));
-    CPU1_Test = [CPU1_Test matrix(:,1)];
+    PRT1_Test = [PRT1_Test matrix(:,1)];
     
 index=index+1;
 end
-
-Xnew = BGN_Test';
+%%
+clc;
+Xnew = LCD1_Test';
 [label,score,cost] = predict(mdl,Xnew);
 label
 

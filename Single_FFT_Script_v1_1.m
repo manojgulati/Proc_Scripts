@@ -10,8 +10,8 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Databin/';
-Path2 = 'Plug/';
-Path3 = 'LC1_';
+Path2 = 'Plug [24-05-2015]/';
+Path3 = 'PRT1_';
 
 File_Path = strcat(Path1,Path2,Path3);
 
