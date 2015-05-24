@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/Plug/';
-Path2 = 'LC1_';
+Path1 = '/Users/manojgulati/Databin/Plug [24-05-2015]/';
+Path2 = 'PRT1_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;
 
@@ -99,7 +99,7 @@ ylabel('Amplitude|Y-DM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI {',Path2,'} '));
 legend('DM EMI');
 ylim([-145 -20]);
-xlim([0 .1]);
+xlim([0 1]);
 grid on;
 hold on;
 subplot(2,1,2);
@@ -109,12 +109,12 @@ plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 ylabel('Amplitude|Y-CM|(dBm)');
 xlabel('Frequency (MHz)');
 ylim([-150 -20]);
-xlim([0 .1]);
+xlim([0 1]);
 legend('CM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-saveas(gcf,strcat(File_Path,'_visualize_X0_1_',int2str(Points),'.png'));
+saveas(gcf,strcat(File_Path,'_visualize_X1_',int2str(Points),'.png'));
 
 %%
 % 

@@ -5,7 +5,7 @@ clear all;
 close all;
 
 Path1 = '/Users/manojgulati/Databin/';
-Path2 = 'Plug/';
+Path2 = 'Plug [24-05-2015]/';
 Path3 = 'BGN1_';
 Path4 = 'KPeak_Features/';
 No_of_traces = 100;
