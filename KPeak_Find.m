@@ -14,4 +14,4 @@ relNums=sunspot(:,2);
 %%
 plot(year,relNums);
 hold on;
-plot(year(locs(1:10)),pks(1:10),'r*');
+plot(year(locs),pks,'r*');
