@@ -4,6 +4,9 @@ import time
 import requests
 import csv
 
+#filename = str(int(time.time())+'.csv')
+import csv
+
 current_time =  int(time.time());
 print current_time
 
@@ -18,5 +21,9 @@ while 1:
 	#print r.json()
 	d=r.json()
 	print current_time, d
+	
+	with open('eggs.csv', 'a+') as csvfile:
+		writer = csv.writer(csvfile)
+		writer.writerow([current_time, d])
 	current_time = current_time+1
 	
