@@ -8,7 +8,7 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Databin/Plug [24-05-2015]/';
-Path2 = 'BGN1_';
+Path2 = 'PRT1_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;
 
@@ -47,16 +47,21 @@ t  = (0:L-1) * T; %time vector
 % f2 = 10*10^6;
 % y1 = 5*sin(2*pi*f1*t)+10*sin(2*pi*f2*t);%test signal
 % y2 = 5*sin(2*pi*f1*t)-10*sin(2*pi*f2*t);%test signal
-%%
+%
 
 % Plot time domain data
 figure;
-plot(y1(1:16384),'r');
-hold on;
-plot(y2(1:16384),'b');
-legend('DM EMI','CM EMI');
-ylim([-1.5 1.5]);
-xlim([0 16384]);
+% plot(y1(1:16384),'r');
+% legend('DM EMI');
+% ylim([-1.25 1.25]);
+% xlim([0 16384]);
+% hold on;
+% figure;
+plot(y2(1:1000),'b');
+% legend('DM EMI','CM EMI');
+legend('CM EMI');
+ylim([-.25 .25]);
+% xlim([0 16384]);
 
 
 %% Paragraph Break
