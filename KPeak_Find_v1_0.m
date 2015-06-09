@@ -5,8 +5,8 @@ clear all;
 close all;
 
 Path1 = '/Users/manojgulati/Databin/';
-Path2 = 'Plug [29-05-2015]/';
-Path3 = 'CFL1_';
+Path2 = 'Plug1 [30-05-2015]/';
+Path3 = 'CPU1_';
 Path4 = 'KPeak_Features/';
 No_of_traces = 100;
 index=1;
@@ -18,10 +18,10 @@ load(strcat(Path1,Path2,Path3,'FFT',int2str(index),'.mat'));
 
 % Enable Plot Function here
 % plot(matrix(:,1),matrix(:,3));
-% xlim([0 .1]);
+% xlim([0 .2]);
 % hold on;
 % plot(matrix(locs(1:10),1),pks(1:10),'r*');
-% xlim([0 .1]);
+% xlim([0 .2]);
 % ylim([-160 -30]);
 
 matrix = [];

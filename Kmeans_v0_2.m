@@ -9,7 +9,7 @@ clear all;
 close all;
 
 Path1 = '/Users/manojgulati/Databin/';
-Path2 = 'Plug [29-05-2015]/';
+Path2 = 'Plug [24-05-2015]/';
 Path3 = 'KPeak_Features/';
 Path4 = 'BGN1_';
 Path5 = 'LC1_';
@@ -31,7 +31,7 @@ LCD1_Test = [];
 CFL1_Test = [];
 CPU1_Test = [];
 % PRT1_Test = [];
-
+%%
 disp('Loading training data');
 No_of_traces = 50;
 index=1;
@@ -71,7 +71,7 @@ Y = [ones(50,1); 2*ones(50,1); 3*ones(50,1); 4*ones(50,1); 5*ones(50,1);];
 disp('Starting learning phase using KNN');
 
 mdl = ClassificationKNN.fit(X,Y);
-% load(strcat(Path1,'Five_Class','_KNN_Learn_CM.mat'),'mdl');
+save(strcat(Path1,'Five_Class','_KNN_Learn_CM.mat'),'mdl');
 
 %%
 
@@ -109,7 +109,8 @@ index=index+1;
 end
 %%
 clc;
-Xnew = CPU1_Test(:,1)';
-[label,score,cost] = predict(mdl,Xnew);
-label
-
+Xnew = CPU1_Test';
+for i=(1:50)
+    [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
+    label
+end

@@ -10,9 +10,9 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Databin/';
-Path2 = 'Plug [29-05-2015]/';
-Path3 = 'CPU1_';
-
+Path2 = 'Plug [31-05-2015]/';
+Path3 = 'BGN1_';
+Path4 = 'FFT_Dump/'
 File_Path = strcat(Path1,Path2,Path3);
 
 No_of_traces = 100;
@@ -77,7 +77,7 @@ matrix(:,1) =f1;
 matrix(:,2) =trace_1;
 matrix(:,3) =trace_2;
 
-save(strcat(Path1,Path2,Path3,'FFT',int2str(index),'.mat'),'matrix');
+save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
 
 
 index=index+1;

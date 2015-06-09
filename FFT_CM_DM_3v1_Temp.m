@@ -8,7 +8,7 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Databin/Plug [24-05-2015]/';
-Path2 = 'PRT1_';
+Path2 = 'BGN1_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;
 
@@ -47,11 +47,17 @@ t  = (0:L-1) * T; %time vector
 % f2 = 10*10^6;
 % y1 = 5*sin(2*pi*f1*t)+10*sin(2*pi*f2*t);%test signal
 % y2 = 5*sin(2*pi*f1*t)-10*sin(2*pi*f2*t);%test signal
+%%
 
 % Plot time domain data
-% plot(y1(1:16384),'r');
-% hold on;
-% plot(y2(1:16384),'b');
+figure;
+plot(y1(1:16384),'r');
+hold on;
+plot(y2(1:16384),'b');
+legend('DM EMI','CM EMI');
+ylim([-1.5 1.5]);
+xlim([0 16384]);
+
 
 %% Paragraph Break
 
@@ -114,7 +120,7 @@ legend('CM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-saveas(gcf,strcat(File_Path,'_visualize_X1_',int2str(Points),'.png'));
+% saveas(gcf,strcat(File_Path,'_visualize_X1_',int2str(Points),'.png'));
 
 %%
 % 
