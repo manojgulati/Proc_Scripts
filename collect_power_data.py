@@ -21,17 +21,11 @@ set_time = set_time-6;
 print 'tx_set_time'
 print set_time
 
-#url = "http://192.168.10.3:8083/ZWaveAPI/Data/" + str(set_time)
-#headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-#r = requests.post(url, headers=headers)
-#time.sleep(3)
-#print r.json()
-
 while 1:
 	set_time = set_time+3
-	url = "http://192.168.10.3:8083/ZWaveAPI/Data/" + str(set_time)
+	url1 = "http://192.168.10.3:8083/ZWaveAPI/Data/" + str(set_time)
 	headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-	r = requests.post(url, headers=headers)
+	r = requests.post(url1, headers=headers)
 	time.sleep(3)
 	#print r.json()
 	d=r.json()
