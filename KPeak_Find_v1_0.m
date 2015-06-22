@@ -26,7 +26,6 @@ load(strcat(Path1,Path2,Path3,'FFT',int2str(index),'.mat'));
 
 matrix = [];
 matrix(:,:) = [locs(1:10) pks(1:10)];
-% matrix(:,2) = pks(1:10);
 
 save(strcat(Path1, Path2, Path4, Path3,int2str(index),'.mat'),'matrix');
 % saveas(gcf,strcat(Path1,Path2,Path4,Path3,'_visualize_Test_',int2str(index),'.png'));
