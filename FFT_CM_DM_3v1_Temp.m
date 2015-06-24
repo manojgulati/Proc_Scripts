@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/Plug [24-05-2015]/';
-Path2 = 'PRT1_';
+Path1 = '/Users/manojgulati/Databin/Plug/';
+Path2 = 'CFL5_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;
 
@@ -28,8 +28,8 @@ end
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
 % Default value is 75 and 28
-y1  = y1 + 96;
-y2  = y2 + 125;
+y1  = y1 + 98;
+y2  = y2 + 127;
 
 % Scaling factor for digital to analog conversion of ADC values.
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
@@ -99,7 +99,7 @@ f1 = f/1000000;
 
 % figure;
 %Plot spectrum.
-figure;
+% figure;
 % figure('units','normalized','outerposition',[0 0 1 1]);
 set(gcf,'Color','w');  %Make the figure background white
 subplot(2,1,1);
@@ -125,7 +125,7 @@ legend('CM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-% saveas(gcf,strcat(File_Path,'_visualize_X1_',int2str(Points),'.png'));
+saveas(gcf,strcat(File_Path,'_visualize_X1_',int2str(Points),'.png'));
 
 %%
 % 
