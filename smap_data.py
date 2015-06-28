@@ -1,18 +1,29 @@
 import requests
 import csv
-import pandas as pd
-r = requests.get("http://energy.iiitd.edu.in:9106/api/data/uuid/8a95c928-0e5b-5231-b60f-80056da9e263?endtime=1433831400000&starttime=1433827800000&limit=-1").json()	#writes the readings of the mentioned meter (via its uuid) for the given time stamp from the smap website into r
-#print r
-#print r[0].keys()
-readings = r[0]['Readings']	#extract only the readings with the timestamp from the input above and remove the uuid
-#print readings
-df = pd.DataFrame(readings)	#convert readings into pandas dataframe
-df.columns = ["timestamp", "power"]	#columns in the dataframe named
-#print df
-#df.index = pd.to_datetime(df.timestamp, unit='ms')	#added timestamp of readable date and time
-#print df.head()
-#df = df.drop("timestamp", 1)	#removed the original timestamp
-#print df.head()
-#df = df.tz_localize("UTC").tz_convert("Asia/Kolkata")	#changed the timestamp to India's time
-#print df.head()
-df.to_csv("smap_phase2.csv", sep='\t', encoding='utf-8')
+import time
+
+time_end = int(time.time()*1000)	#first time assigning the timestamp
+fd = open('smap_data.csv','wb')	#to create the csv file
+fd.close
+
+while True:
+
+    time_start = time_end	#start time stamp of data collection assigned
+    time.sleep(10)	# delay to fetch large number of data values. This delay can be set as needed
+    time_end = int(time.time()*1000)	#end time stamp of data collection assigned
+
+    url = "http://energy.iiitd.edu.in:9106/api/data/uuid/f0de0796-f3b6-594d-81d5-58d2993b69b7?endtime="+str(time_end)+"&starttime="+str(time_start)+"&limit=-1"
+
+    r = requests.get(url).json()	#writes the readings of the mentioned meter (via its uuid) for the given time stamp from the smap website into r
+
+    readings = r[0]['Readings']	#extract only the readings with the timestamp from the input above and remove the uuid
+
+    print time_start, time_end	#print on screen to keep check of incoming data
+    print len(readings)
+    
+    with open('smap_data.csv', 'ab') as fp:	#to append the data in csv file
+        a = csv.writer(fp, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        a.writerows(readings)
+
+    
+#	why limit=-1 is used in url ??
