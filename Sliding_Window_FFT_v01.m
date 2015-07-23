@@ -10,15 +10,15 @@ close all;
 
 offset=0;
 
-while (i+1<17940)
-
 % Directory path to store computed FFT plots averaged over 10 second window
-Path1 = '/Users/manojgulati/Documents/Processed Plots RT 18-06-15/';
-Path2 = '/Users/manojgulati/Databin/';
+Path1 = '/Users/manojgulati/Databin/CH-1 Test-1k/';
+Path2 = '/Users/manojgulati/Databin/CH-1 Test-1k/';
 
 % Load raw EMI data dump in to memory for computing FFT over sliding window
 % of 10 seconds
-loadContent=dir('/Users/manojgulati/Databin/');
+loadContent=dir(Path2);
+
+while (i+1<length(loadContent))
 
 No_of_traces = 20;
 
@@ -48,10 +48,17 @@ y1=y1*0.000131;
 y2=y2*0.000131;
 
 % Configuration Parameters
-fs = 1.953*(10^6);  %sample frequency in Hz
+fs = 1.953125*(10^6);  %sample frequency in Hz
 T  = 1/fs;        %sample period in s
 L  = 16384;       %signal length
 t  = (0:L-1) * T; %time vector
+%
+figure;
+plot(y1(:,:));
+% hold on;
+% plot(y2(:,1));
+ylim([-0.5 0.5]);
+hold off;
 
 %% Paragraph Break
 
@@ -88,8 +95,8 @@ f1 = f/1000000;
 
 % figure;
 %Plot spectrum.
-% figure;
-fig=figure('visible','off');
+figure;
+% fig=figure('visible','off');
 % figure('units','normalized','outerposition',[0 0 1 1]);
 set(gcf,'Color','w');  %Make the figure background white
 subplot(2,1,1);
@@ -117,7 +124,7 @@ grid on;
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 saveas(gcf,strcat(Path1,'FFT_X1_',loadContent(i-No_of_traces+1,1).name,'.png'));
 
-close all;
+% close all;
 
 offset = offset+20;
 end

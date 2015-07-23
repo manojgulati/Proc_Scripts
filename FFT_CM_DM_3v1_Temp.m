@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/Plug/';
-Path2 = 'CFL5_';
+Path1 = '/Users/manojgulati/Databin/Experiments_22_July_2015/EXP5/';
+Path2 = 'BGN1_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;
 
@@ -37,7 +37,8 @@ y1=y1*0.000131;
 y2=y2*0.000131;
 
 % Configuration Parameters
-fs = 1.953*(10^6);  %sample frequency in Hz
+% fs = 1.953125*(10^6);  %sample frequency in Hz
+fs = 15.625*(10^6);  %sample frequency in Hz
 T  = 1/fs;        %sample period in s
 L  = 16384;       %signal length
 t  = (0:L-1) * T; %time vector
@@ -48,19 +49,19 @@ t  = (0:L-1) * T; %time vector
 % y1 = 5*sin(2*pi*f1*t)+10*sin(2*pi*f2*t);%test signal
 % y2 = 5*sin(2*pi*f1*t)-10*sin(2*pi*f2*t);%test signal
 %
-
+%%
 % Plot time domain data
-figure;
+% figure;
 % plot(y1(1:16384),'r');
 % legend('DM EMI');
 % ylim([-1.25 1.25]);
-% xlim([0 16384]);
+% xlim([0 16384]);  
 % hold on;
 % figure;
-plot(y2(1:1000),'b');
+% plot(y2(1:16384),'b');
 % legend('DM EMI','CM EMI');
-legend('CM EMI');
-ylim([-.25 .25]);
+% legend('CM EMI');
+% ylim([-.2 .2]);
 % xlim([0 16384]);
 
 
@@ -109,8 +110,8 @@ plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 ylabel('Amplitude|Y-DM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI {',Path2,'} '));
 legend('DM EMI');
-ylim([-145 -20]);
-xlim([0 1]);
+ylim([-150 -40]);
+xlim([0.1 5]);
 grid on;
 hold on;
 subplot(2,1,2);
@@ -119,9 +120,9 @@ plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
 ylabel('Amplitude|Y-CM|(dBm)');
 xlabel('Frequency (MHz)');
-ylim([-150 -20]);
-xlim([0 1]);
-legend('CM EMI');
+ylim([-150 -40]);
+xlim([0.1 5]);
+% legend('CM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
