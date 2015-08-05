@@ -5,10 +5,10 @@ clear all;
 close all;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'CFL';
+Path2 = 'LC';
 Path3 = '/FFT/';
 Path4 = '/Trial_kNN_Analytics/kpeak_features_CM/';
-Path5 = 'CFL5_';
+Path5 = 'BGN_LC5_';
 No_of_traces = 1500;
 index=1;
 

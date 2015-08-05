@@ -11,7 +11,7 @@ clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path2 = 'LC/';
-Path3 = 'BGN_LC5_';
+Path3 = 'BGN_LC1_';
 Path4 = 'FFT/'
 File_Path = strcat(Path1,Path2,Path3);
 
