@@ -13,7 +13,7 @@ Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path2 = 'LC/';
 Path3 = 'BGN_LC1_';
 Path4 = 'FFT/'
-File_Path = strcat(Path1,Path2,Path3);
+File_Path = strcat(Path1,Path2,Pqath3);
 
 No_of_traces = 1500;
     
@@ -77,11 +77,11 @@ matrix(:,1) =f1;
 matrix(:,2) =trace_1;
 matrix(:,3) =trace_2;
 
-save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
+% save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
 
-% plot(f1,trace_1,'b');
-% hold on;
-% plot(f1,trace_2,'r');
+plot(f1,trace_1,'b');
+hold on;
+plot(f1,trace_2,'r');
 
 index=index+1;
 end

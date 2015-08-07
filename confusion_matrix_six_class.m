@@ -201,8 +201,12 @@ Confusion_matrix = CM1+CM2+CM3+CM4+CM5+CM6+CM7+CM8+CM9+CM10+CM11+CM12+CM13+CM14+
 Resultant_matrix = (Confusion_matrix./30000)*100;
 
 
+CM=CM17+CM18+CM19+CM20;
 
+RM = (CM./6000)*100;
 
+RM=round(Resultant_matrix);
 
+Mean_accuracy = sum(diag(Resultant_matrix))/6
 
 

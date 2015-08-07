@@ -1,5 +1,9 @@
 % Code for computing Frequency Spectrum of Common Mode and Differential Mode components of Conducted EMI on single trace 
 % & Dumping it as mat file
+
+% Changes:
+% (7-08-2015) Added support to limit duration of 
+
 % Manoj Gulati
 % IIIT-Delhi
 
@@ -10,17 +14,18 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'LC/';
-Path3 = 'BGN_LC1_';
-Path4 = 'FFT/'
-File_Path = strcat(Path1,Path2,Pqath3);
+Path2 = 'PRT/';
+Path3 = 'PRT5_';
+Path4 = 'FFT256/'
+File_Path = strcat(Path1,Path2,Path3);
 
-No_of_traces = 1500;
+No_of_traces = 100;
+L  = 16384/64;       %signal length
     
 % Fetch content from files taken from Redpitaya
 M1=zeros(16384,2);
-y1=zeros(16384,1);
-y2=zeros(16384,1);
+y1=zeros(L,1);
+y2=zeros(L,1);
 
 index=1;
 while(index<No_of_traces+1)
@@ -28,9 +33,9 @@ while(index<No_of_traces+1)
 M1(:,:)=importdata(strcat(File_Path,int2str(index),'.csv'));
 
 % Fetch content for Channel-1 (Vdm)
-y1(:,1)  = M1(:,1);
+y1(:,1)  = M1(1:L,1);
 % Fetch content for Channel-2 (Earth)
-y2(:,1)  = M1(:,2);
+y2(:,1)  = M1(1:L,2);
 
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
@@ -46,7 +51,6 @@ y2=y2*0.000131;
 % Configuration Parameters
 fs = 15.625*(10^6);  %sample frequency in Hz
 T  = 1/fs;        %sample period in s
-L  = 16384;       %signal length
 t  = (0:L-1) * T; %time vector
 
 
@@ -77,11 +81,22 @@ matrix(:,1) =f1;
 matrix(:,2) =trace_1;
 matrix(:,3) =trace_2;
 
-save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
+% % Time moving average on FFT data
+% trace_2_new=tsmovavg(trace_2,'s',15,1);
 
-% plot(f1,trace_1,'b');
-% hold on;
-% plot(f1,trace_2,'r');
+% set(gcf,'Color','w');  %Make the figure background white
+% plot(f1,trace_2,'b');
+% % hold on;
+% % plot(f1,trace_2_new,'b');
+% ylabel('Amplitude|Y-CM|(dBm)');
+% xlabel('Frequency (MHz)');
+% ylim([-160 -60]);
+% % xlim([0.1 5]);
+% legend('CM EMI');
+% grid on;
+% saveas(gcf,strcat(Path1,Path3,'_visualize_X5_',int2str(L),'.png'));
+
+save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
 
 index=index+1;
 end
