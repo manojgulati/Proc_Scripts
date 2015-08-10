@@ -1,6 +1,5 @@
 % Code for computing Frequency Spectrum of Common Mode and Differential Mode components of Conducted EMI on single trace 
 % & Dumping it as mat file
-
 % Changes:
 % (7-08-2015) Added support to limit duration of 
 
@@ -100,3 +99,4 @@ save(strcat(Path1,Path2,Path4,Path3,'FFT',int2str(index),'.mat'),'matrix');
 
 index=index+1;
 end
+

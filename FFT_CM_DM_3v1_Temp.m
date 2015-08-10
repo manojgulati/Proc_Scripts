@@ -7,7 +7,7 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/EMI_experiment_23_July_2015/BGN/';
+Path1 = '/Users/manojgulati/Downloads/RF_Lab data-2/cro_ups_rflabsupply/';
 Path2 = 'BGN1_';
 File_Path = strcat(Path1,Path2);
 No_of_traces = 100;

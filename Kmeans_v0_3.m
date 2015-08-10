@@ -1,16 +1,15 @@
-% K-means clustering on k-peak features extracted from CM EMI data for five
-% class problem..
+% K-means clustering on k-peak features extracted from CM EMI data using Descriptive stats.
 % Manoj Gulati
 % IIITD
-% DOM:24-05-2015
+% DOM:10-05-2015
 
 clc;
 clear all;
 close all;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/Trial_kNN_Analytics/';
-Path3 = 'kpeak_features_CM/';
+Path2 = '/TD16384_features/';
+% Path3 = 'kpeak_features_CM/';
 app_instance_train = 5;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
@@ -40,83 +39,83 @@ LCD_Test = [];
 CFL_Test = [];
 CPU_Test = [];
 PRT_Test = [];
-No_of_traces = 100;
+No_of_traces = 1500;
 
 %%
 disp('Loading training data');
-index=1;
-while(index<No_of_traces+1)
+% index=1;
+% while(index<No_of_traces+1)
     % load backrgound data for training
-    load(strcat(Path1,Path2,Path3,Path4,int2str(index),'.mat'));
-    BGN = [BGN matrix(:,1)];
+    load(strcat(Path1,Path2,Path4,'TD_stat','.mat'));
+    BGN = [BGN feature_vector(:,:)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path3,Path5,int2str(index),'.mat'));
-    LC1 = [LC1 matrix(:,1)];
+    load(strcat(Path1,Path2,Path5,'TD_stat','.mat'));
+    LC1 = [LC1 feature_vector(:,:)];
 
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path3,Path6,int2str(index),'.mat'));
-    LCD1 = [LCD1 matrix(:,1)];
+    load(strcat(Path1,Path2,Path6,'TD_stat','.mat'));
+    LCD1 = [LCD1 feature_vector(:,:)];
 
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path3,Path7,int2str(index),'.mat'));
-    CFL1 = [CFL1 matrix(:,1)];
+    load(strcat(Path1,Path2,Path7,'TD_stat','.mat'));
+    CFL1 = [CFL1 feature_vector(:,:)];
 
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path3,Path8,int2str(index),'.mat'));
-    CPU1 = [CPU1 matrix(:,1)];
+    load(strcat(Path1,Path2,Path8,'TD_stat','.mat'));
+    CPU1 = [CPU1 feature_vector(:,:)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path3,Path9,int2str(index),'.mat'));
-    PRT1 = [PRT1 matrix(:,1)];
+    load(strcat(Path1,Path2,Path9,'TD_stat','.mat'));
+    PRT1 = [PRT1 feature_vector(:,:)];
     
-index=index+1;
-end
+% index=index+1;
+% end
 
 % % Data for KNN training
 X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1'];
 % % Labels for KNN training
 Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*ones(No_of_traces,1); 5*ones(No_of_traces,1); 6*ones(No_of_traces,1);];
 % 
-disp('Starting learning phase using KNN');
+% disp('Starting learning phase using KNN');
 %% 
 % mdl = ClassificationKNN.fit(X,Y);
 % save(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(app_instance_train),'.mat'),'mdl');
 load(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(app_instance_train),'.mat'),'mdl');
 
-%%
+%
 
 disp('Starting testing phase using KNN');
 
-index=1;
-while(index<No_of_traces+1)
+% index=1;
+% while(index<No_of_traces+1)
     
     % load backrgound data for testing
-    load(strcat(Path1,Path2,Path3,Path14,int2str(index),'.mat'));
-    BGN_Test = [BGN_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path14,'TD_stat','.mat'));
+    BGN_Test = [BGN_Test feature_vector(:,:)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path3,Path15,int2str(index),'.mat'));
-    LC_Test = [LC_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path15,'TD_stat','.mat'));
+    LC_Test = [LC_Test feature_vector(:,:)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path3,Path16,int2str(index),'.mat'));
-    LCD_Test = [LCD_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path16,'TD_stat','.mat'));
+    LCD_Test = [LCD_Test feature_vector(:,:)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path3,Path17,int2str(index),'.mat'));
-    CFL_Test = [CFL_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path17,'TD_stat','.mat'));
+    CFL_Test = [CFL_Test feature_vector(:,:)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path3,Path18,int2str(index),'.mat'));
-    CPU_Test = [CPU_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path18,'TD_stat','.mat'));
+    CPU_Test = [CPU_Test feature_vector(:,:)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path3,Path19,int2str(index),'.mat'));
-    PRT_Test = [PRT_Test matrix(:,1)];
+    load(strcat(Path1,Path2,Path19,'TD_stat','.mat'));
+    PRT_Test = [PRT_Test feature_vector(:,:)];
     
-index=index+1;
-end
+% index=index+1;
+% end
 %%
 clc;
 Xnew = BGN_Test';
