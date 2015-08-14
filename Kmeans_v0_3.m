@@ -20,13 +20,13 @@ LCD_Test = [];
 CFL_Test = [];
 CPU_Test = [];
 PRT_Test = [];
-feat_len = 1;
-temp_var = 3451;
+feat_len = [12 8 4 10 11 1 9 5 3];
+temp_var = 5123;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
 Path2 = '/TD16384_features/';
 % Path3 = 'kpeak_features_CM/';
-app_instance_train = 4;
+app_instance_train = 3;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
 Path6 = strcat('LCD',int2str(app_instance_train),'_');
@@ -34,7 +34,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance = 2;
+app_instance = 4;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
@@ -81,7 +81,7 @@ X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1'];
 Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*ones(No_of_traces,1); 5*ones(No_of_traces,1); 6*ones(No_of_traces,1);];
 % 
 % disp('Starting learning phase using KNN');
-%% 
+%
 mdl = ClassificationKNN.fit(X,Y);
 save(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
 % load(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(1234),'.mat'),'mdl');
