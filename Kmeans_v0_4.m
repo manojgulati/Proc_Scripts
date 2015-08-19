@@ -22,13 +22,14 @@ CPU_Test = [];
 PRT_Test = [];
 % feat_len = [12 8 4 10 11 1 9 5 3];
 feat_len = [1:12];
-temp_var = 1234;
+temp_var = 2345;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_features/compressed_features/';
-% Path3 = 'kpeak_features_CM/';
-app_instance_train = 4;
+Path2 = '/TD16384_features/compressed_features_new/';
+Path3 = strcat('Feat',int2str(dim),'/');
+
+app_instance_train = 5;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
 Path6 = strcat('LCD',int2str(app_instance_train),'_');
@@ -36,7 +37,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance =5;
+app_instance = 1;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
@@ -44,38 +45,39 @@ Path17 = strcat('CFL',int2str(app_instance),'_');
 Path18 = strcat('CPU',int2str(app_instance),'_');
 Path19 = strcat('PRT',int2str(app_instance),'_');
 
-No_of_traces = 4;
-
+No_of_traces = 60;
+No_of_data_traces = 15;
 %
 disp('Loading training data');
-% index=1;
-% while(index<No_of_traces+1)
+
+index=1;
+while(index<No_of_data_traces+1)
     % load backrgound data for training
-    load(strcat(Path1,Path2,Path4,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path4,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     BGN = [BGN feature(feat_len,dim)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path5,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path5,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     LC1 = [LC1 feature(feat_len,dim)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path6,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path6,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     LCD1 = [LCD1 feature(feat_len,dim)];
 
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path7,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path7,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     CFL1 = [CFL1 feature(feat_len,dim)];
 
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path8,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path8,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     CPU1 = [CPU1 feature(feat_len,dim)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path9,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path9,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     PRT1 = [PRT1 feature(feat_len,dim)];
     
-% index=index+1;
-% end
+index=index+1;
+end
 
 %% % Data for KNN training
 X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1'];
@@ -85,43 +87,41 @@ Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*one
 % disp('Starting learning phase using KNN');
 %
 mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',1);
-save(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
-% load(strcat(Path1,Path2,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
-
+save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
+% load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
 
 %
-
 disp('Starting testing phase using KNN');
 
-% index=1;
-% while(index<No_of_traces+1)
+index=1;
+while(index<No_of_data_traces+1)
     
     % load backrgound data for testing
-    load(strcat(Path1,Path2,Path14,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path14,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     BGN_Test = [BGN_Test feature(feat_len,dim)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path15,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path15,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     LC_Test = [LC_Test feature(feat_len,dim)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path16,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path16,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     LCD_Test = [LCD_Test feature(feat_len,dim)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path17,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path17,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     CFL_Test = [CFL_Test feature(feat_len,dim)];
 
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path18,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path18,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     CPU_Test = [CPU_Test feature(feat_len,dim)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path19,'TD_stat','.mat'));
+    load(strcat(Path1,Path2,Path19,'TD_stat_',int2str(No_of_data_traces),'.mat'));
     PRT_Test = [PRT_Test feature(feat_len,dim)];
     
-% index=index+1;
-% end
+index=index+1;
+end
 %
 clc;
 Xnew = BGN_Test';
@@ -197,9 +197,9 @@ x6=sum((label)==6);
 Z6=[x1 x2 x3 x4 x5 x6];
 
 Z = [Z1; Z2; Z3; Z4; Z5; Z6;];
-Z=Z./1;
+Z=Z./15;
 avg = sum(diag(Z))/6;
-save(strcat(Path1, Path2, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len),'.mat'),'Z');
+save(strcat(Path1, Path2,Path3, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len),'.mat'),'Z');
 
 
 

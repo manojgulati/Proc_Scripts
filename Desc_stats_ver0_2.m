@@ -24,10 +24,11 @@ data_vector = data;
 % descriptive statistics function
 
 mdn = median(data_vector);
-prc = prctile(data_vector,[25 75],1); 
+prc = prctile(data_vector,[25 75],2); 
 prc1 = prc(1,1);
-prc2 = prc(2,1);
+prc2 = prc(1,2);
+range = prc2 - prc1;
 % acf = autocorr(data_vector,[1]);
 % l1 = norm(data_vector,1);
 % l2 = norm(data_vector,2);
-feature_vector = [mdn; prc1; prc2;];
+feature_vector = [mdn; prc1; prc2; range;];
