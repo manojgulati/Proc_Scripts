@@ -9,8 +9,8 @@ clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path2 = 'PRT/';
-Path3 = 'PRT5_';
-Path4 = 'TD16384/'
+Path3 = 'PRT2_';
+Path4 = 'TD16384_Features_SET2/';
 File_Path = strcat(Path1,Path2,Path3);
 
 No_of_traces = 1500;
@@ -45,11 +45,12 @@ y2=y2*0.000131;
 
 % plot(y2);
 
-feature = Desc_stats(y2);
+feature = Desc_stats_ver0_1(y2);
 feature_vector = [feature_vector feature];
 
 display(int2str(index));
 index=index+1;
 end
-save(strcat(Path1,Path2,Path4,Path3,'TD_stat','.mat'),'feature_vector');
+%
+save(strcat(Path1,Path4,Path3,'TD_stat','.mat'),'feature_vector');
 

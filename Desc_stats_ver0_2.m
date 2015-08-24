@@ -5,6 +5,7 @@ clc;
 
 % data_vector = rand(100,1);
 data_vector = data;
+format long e;
 
 % % Features
 % 1. Mean -

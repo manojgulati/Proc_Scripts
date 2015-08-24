@@ -4,7 +4,7 @@ clc;
 % clear all;
 
 % Compute data vector on non-negative values of input data stream
-data_vector = abs(data);
+data_vector = data;
 format long e;
 % % Features
 % 1. Mean -

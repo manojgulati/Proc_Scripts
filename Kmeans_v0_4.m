@@ -20,14 +20,14 @@ LCD_Test = [];
 CFL_Test = [];
 CPU_Test = [];
 PRT_Test = [];
-% feat_len = [12 8 4 10 11 1 9 5 3];
-feat_len = [1:12];
-temp_var = 2345;
+feat_len = [1 3 4 5 6 8 9 10 11 12 13 14 15];
+% feat_len = [1:12];
+temp_var = 54;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_features/compressed_features_new/';
-Path3 = strcat('Feat',int2str(dim),'/');
+Path2 = '/TD16384_Features_SET1/compressed_features_test/FEAT150/';
+Path3 = strcat('DIM',int2str(dim),'/');
 
 app_instance_train = 5;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
@@ -37,7 +37,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance = 1;
+app_instance = 4;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
@@ -45,8 +45,8 @@ Path17 = strcat('CFL',int2str(app_instance),'_');
 Path18 = strcat('CPU',int2str(app_instance),'_');
 Path19 = strcat('PRT',int2str(app_instance),'_');
 
-No_of_traces = 60;
-No_of_data_traces = 15;
+No_of_traces = 10;
+No_of_data_traces = 10;
 %
 disp('Loading training data');
 
@@ -86,9 +86,9 @@ Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*one
 
 % disp('Starting learning phase using KNN');
 %
-mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',1);
-save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
-% load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len),'.mat'),'mdl');
+% mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',1);
+% save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(5),'_',int2str(feat_len),'.mat'),'mdl');
+load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(5),'_',int2str(feat_len),'.mat'),'mdl');
 
 %
 disp('Starting testing phase using KNN');
@@ -197,7 +197,7 @@ x6=sum((label)==6);
 Z6=[x1 x2 x3 x4 x5 x6];
 
 Z = [Z1; Z2; Z3; Z4; Z5; Z6;];
-Z=Z./15;
+Z=Z./10;
 avg = sum(diag(Z))/6;
 save(strcat(Path1, Path2,Path3, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len),'.mat'),'Z');
 
