@@ -22,7 +22,7 @@ CPU_Test = [];
 PRT_Test = [];
 feat_len = [13 14 10 15 5 11];
 % feat_len = [1:12];
-temp_var = 54;
+temp_var = 53;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
@@ -37,7 +37,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance = 4;
+app_instance = 2;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
