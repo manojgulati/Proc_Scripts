@@ -37,7 +37,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance = 4;
+app_instance = 2;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
@@ -82,16 +82,16 @@ end
 %% % Data for KNN training
 X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1'];
 % % Labels for KNN training
-Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*ones(No_of_traces,1); 5*ones(No_of_traces,1); 6*ones(No_of_traces,1);];
+% Y = [ones(No_of_traces,1); 2*ones(No_of_traces,1); 3*ones(No_of_traces,1); 4*ones(No_of_traces,1); 5*ones(No_of_traces,1); 6*ones(No_of_traces,1);];
 
-%% disp('Starting learning phase using KNN');
-%
-% mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',3);    
+%% 
+disp('Starting learning phase using KMeans Clustering');
+[idx,c] = kmeans(X,6,'start','uniform', 'emptyaction','singleton');
 % save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(5),'_',int2str(feat_len),'.mat'),'mdl');
-load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(5),'_',int2str(feat_len),'.mat'),'mdl');
+% load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(5),'_',int2str(feat_len),'.mat'),'mdl');
 
-%
-disp('Starting testing phase using KNN');
+%%
+disp('Starting testing phase using KMeans');
 
 index=1;
 while(index<No_of_data_traces+1)
@@ -122,7 +122,7 @@ while(index<No_of_data_traces+1)
     
 index=index+1;
 end
-%
+%%
 clc;
 Xnew = BGN_Test';
 for i=(1:No_of_traces)
