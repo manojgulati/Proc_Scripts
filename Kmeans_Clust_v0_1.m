@@ -22,14 +22,14 @@ CPU_Test = [];
 PRT_Test = [];
 feat_len = [13 14 10 15 5 11];
 % feat_len = [1:15];
-temp_var = 14;
+temp_var = 54;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
 Path2 = '/TD16384_Features_SET1/compressed_features_test/FEAT150/';
 Path3 = strcat('DIM',int2str(dim),'/');
 
-app_instance_train = 1;
+app_instance_train = 5;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
 Path6 = strcat('LCD',int2str(app_instance_train),'_');

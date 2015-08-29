@@ -8,10 +8,10 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'PRT/';
-Path3 = 'PRT2_';
-Path4 = 'TD16384_Features_SET2/';
-File_Path = strcat(Path1,Path2,Path3);
+% Path2 = '/';
+% Path3 = 'LC2_';
+Path4 = 'TD16384_Features_SET3/';
+File_Path = strcat(Path1,file_names(f_index));
 
 No_of_traces = 1500;
 L=16384;

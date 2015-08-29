@@ -4,7 +4,7 @@ clc;
 % clear all;
 
 % Compute data vector on non-negative values of input data stream
-data_vector = data;
+data_vector = abs(data);
 format long e;
 % % Features
 % 1. Mean -
@@ -23,6 +23,8 @@ format long e;
 % 14. Entropy
 % 15. Skewness
 % 16. Kurtosis
+% 17. Interquartile Range
+% 18. Mean absolute deviation
 
 % descriptive statistics function
 
@@ -42,7 +44,10 @@ range = mx-mn;
 ent = entropy(data_vector);
 skew = skewness(data_vector);
 kurt = kurtosis(data_vector);
+ir = iqr(data_vector);
+mads = mad(data_vector);
+
 % acf = autocorr(data_vector,[1]);
 % l1 = norm(data_vector,1);
 % l2 = norm(data_vector,2);
-feature_vector = [mx; mn; mu; sigma; mdn; mod; vr; prc1; prc2; prc3; prc4; range; ent; skew; kurt;];
+feature_vector = [mx; mn; mu; sigma; mdn; mod; vr; prc1; prc2; prc3; prc4; range; ent; skew; kurt; ir; mads;];

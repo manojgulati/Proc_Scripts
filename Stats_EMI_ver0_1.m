@@ -6,17 +6,20 @@
 clear all;
 close all;
 clc;
-
+f_index=1;
+file_names = {'LC/BGN_LC1','LC/BGN_LC2','LC/BGN_LC3','LC/BGN_LC4','LC/BGN_LC5','LC/LC1','LC/LC2','LC/LC3','LC/LC4','LC/LC5','LCD/LCD1','LCD/LCD2','LCD/LCD3','LCD/LCD4','LCD/LCD5','CFL/CFL1','CFL/CFL2','CFL/CFL3','CFL/CFL4','CFL/CFL5','CPU/CPU1','CPU/CPU2','CPU/CPU3','CPU/CPU4','CPU/CPU5','PRT/PRT1','PRT/PRT2','PRT/PRT3','PRT/PRT4','PRT/PRT5'};
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'PRT/';
-Path3 = 'PRT3_';
-Path4 = 'TD16384_Features_SET2/';
-File_Path = strcat(Path1,Path2,Path3);
+% Path2 = '/';
+Path3 = '_';
+Path4 = 'TD16384_Features_SET3/';
+while(f_index<2)
+    
+File_Path = strcat(Path1,char(file_names(f_index)),Path3);
 
 No_of_traces = 1500;
 L=16384;
 feature_vector = [];
-
+%
 % Fetch content from files taken from Redpitaya
 M1=zeros(16384,2);
 y1=zeros(L,1);
@@ -51,6 +54,9 @@ feature_vector = [feature_vector feature];
 display(int2str(index));
 index=index+1;
 end
-%
+
 save(strcat(Path1,Path4,Path3,'TD_stat','.mat'),'feature_vector');
 
+f_index=f_index+1;
+
+end
