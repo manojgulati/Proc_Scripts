@@ -20,13 +20,13 @@ LCD_Test = [];
 CFL_Test = [];
 CPU_Test = [];
 PRT_Test = [];
-feat_len = [13 14 10 15 5 11];
+feat_len = [13 14 16 15 10 12 1 5 11 17];
 % feat_len = [1:15];
 temp_var = 54;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_Features_SET1/compressed_features_test/FEAT150/';
+Path2 = '/TD16384_Features_SET3/compressed_features/FEAT150/';
 Path3 = strcat('DIM',int2str(dim),'/');
 
 app_instance_train = 5;
@@ -89,7 +89,7 @@ disp('Starting learning phase using KMeans Clustering');
 rng(1); % Initialise random number generator for reproducibility
 [idx,c] = kmeans(X,6,'start','uniform', 'emptyaction','singleton');
 
-%%
+%
 disp('Starting testing phase using KMeans');
 
 index=1;
@@ -192,7 +192,7 @@ end
  
 Z = [Z1'; Z2'; Z3'; Z4'; Z5'; Z6';];
 Z=Z./10;
-
+%
 save(strcat(Path1,Path2,Path3, 'Result_',int2str(temp_var),'.mat'),'Z');
 save(strcat(Path1,Path2,Path3, 'Idx_',int2str(temp_var),'.mat'),'idx');
 save(strcat(Path1,Path2,Path3, 'Centroid_',int2str(temp_var),'.mat'),'c');
