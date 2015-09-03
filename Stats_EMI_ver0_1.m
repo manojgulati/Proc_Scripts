@@ -20,7 +20,7 @@ File_Path = strcat(Path1,char(file_names(f_index)),Path3);
 No_of_traces = 1500;
 L=16384;
 feature_vector = [];
-%
+
 % Fetch content from files taken from Redpitaya
 M1=zeros(16384,2);
 y1=zeros(L,1);

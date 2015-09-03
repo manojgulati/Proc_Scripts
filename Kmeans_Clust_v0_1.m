@@ -22,14 +22,14 @@ CPU_Test = [];
 PRT_Test = [];
 feat_len = [13 14 16 15 10 12 1 5 11 17];
 % feat_len = [1:15];
-temp_var = 54;
+temp_var = 12;
 dim = 1;
 %%
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_Features_SET3/compressed_features/FEAT150/';
+Path2 = '/TD16384_Features_SET3_CM/compressed_features/FEAT500/';
 Path3 = strcat('DIM',int2str(dim),'/');
 
-app_instance_train = 5;
+app_instance_train = 1;
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
 Path6 = strcat('LCD',int2str(app_instance_train),'_');
@@ -37,7 +37,7 @@ Path7 = strcat('CFL',int2str(app_instance_train),'_');
 Path8 = strcat('CPU',int2str(app_instance_train),'_');
 Path9 = strcat('PRT',int2str(app_instance_train),'_');
 
-app_instance = 4;
+app_instance = 2;
 Path14 = strcat('BGN_LC',int2str(app_instance),'_');
 Path15 = strcat('LC',int2str(app_instance),'_');
 Path16 = strcat('LCD',int2str(app_instance),'_');
@@ -45,8 +45,8 @@ Path17 = strcat('CFL',int2str(app_instance),'_');
 Path18 = strcat('CPU',int2str(app_instance),'_');
 Path19 = strcat('PRT',int2str(app_instance),'_');
 
-No_of_traces = 10;
-No_of_data_traces = 10;
+No_of_traces = 5;
+No_of_data_traces = 5;
 %
 disp('Loading training data');
 
@@ -82,13 +82,18 @@ end
 %% % Data for KNN training
 X = [BGN'; LC1'; LCD1'; CFL1'; CPU1'; PRT1'];
 
-%
+%%
 disp('Starting learning phase using KMeans Clustering');
 
 % Training Classifier
-rng(1); % Initialise random number generator for reproducibility
+% rng default; % Initialise random number generator for reproducibility
 [idx,c] = kmeans(X,6,'start','uniform', 'emptyaction','singleton');
 
+% load('idx_mat.mat');
+% load('centroid.mat');
+clc;
+sequence = [idx(1) idx(6) idx(11) idx(16) idx(21) idx(26) ]
+%%
 %
 disp('Starting testing phase using KMeans');
 
@@ -122,7 +127,7 @@ while(index<No_of_data_traces+1)
 index=index+1;
 end
 %
-clc;
+% clc;
 x = [];
 Z1=zeros(6,1);
 Z2=zeros(6,1);
@@ -196,6 +201,10 @@ Z=Z./10;
 save(strcat(Path1,Path2,Path3, 'Result_',int2str(temp_var),'.mat'),'Z');
 save(strcat(Path1,Path2,Path3, 'Idx_',int2str(temp_var),'.mat'),'idx');
 save(strcat(Path1,Path2,Path3, 'Centroid_',int2str(temp_var),'.mat'),'c');
+%
+
+
+
 
 
 
