@@ -1,4 +1,4 @@
-% K-means clustering on k-peak features extracted from CM EMI data for five
+% kNN clustering on k-peak features extracted from CM EMI data for five
 % class problem..
 % Manoj Gulati
 % IIITD

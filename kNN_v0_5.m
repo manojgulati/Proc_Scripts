@@ -1,7 +1,7 @@
-% K-means clustering on k-peak features extracted from CM EMI data using Descriptive stats.
+% KNN clustering on k-peak features extracted from CM EMI data using Descriptive stats.
 % Manoj Gulati
 % IIITD
-% DOM:10-05-2015
+% DOM:15-09-2015
 
 clc;
 clear all;
@@ -56,37 +56,37 @@ disp('Loading training data');
 index=1;
 while(index<No_of_data_traces+1)
     % load backrgound data for training
-    load(strcat(Path1,Path2,Path4,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path4,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     BGN = [BGN diag(fusion)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path5,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path5,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     LC1 = [LC1 diag(fusion)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path6,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path6,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     LCD1 = [LCD1 diag(fusion)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path7,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path7,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     CFL1 = [CFL1 diag(fusion)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path8,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path8,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     CPU1 = [CPU1 diag(fusion)];
     
     % load Appliance data for training
-    load(strcat(Path1,Path2,Path9,'TD_stat_',int2str(No_of_data_traces),'.mat'));
+    load(strcat(Path1,Path2,Path9,'TD_stat_',int2str(index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     PRT1 = [PRT1 diag(fusion)];
@@ -108,41 +108,41 @@ load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(app_instance_t
 %%
 disp('Starting testing phase using KNN');
 
-index=1;
-while(index<No_of_test_traces+1)
+t_index=1;
+while(t_index<No_of_test_traces+1)
     
     % load backrgound data for testing
-    load(strcat(Path1,Path2,Path14,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path14,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     BGN_Test = [BGN_Test diag(fusion)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path15,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path15,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     LC_Test = [LC_Test diag(fusion)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path16,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path16,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     LCD_Test = [LCD_Test diag(fusion)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path17,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path17,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     CFL_Test = [CFL_Test diag(fusion)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path18,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path18,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     CPU_Test = [CPU_Test diag(fusion)];
     
     % load Appliance data for testing
-    load(strcat(Path1,Path2,Path19,'TD_stat_',int2str(No_of_test_traces),'.mat'));
+    load(strcat(Path1,Path2,Path19,'TD_stat_',int2str(t_index),'.mat'));
     fusion = [];
     fusion = feature(feat_len1,feat_len2);
     PRT_Test = [PRT_Test diag(fusion)];
@@ -225,9 +225,10 @@ Z6=[x1 x2 x3 x4 x5 x6];
 
 Z = [Z1; Z2; Z3; Z4; Z5; Z6;];
 Z=Z./No_of_test_traces;
-avg = sum(diag(Z))/6;
+% avg = sum(diag(Z))/6;
+eval(sprintf('T%d = Z;',app_instance));
 %
-save(strcat(Path1, Path2,Path3, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len1),'.mat'),'Z');
+save(strcat(Path1, Path2,Path3, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len),'.mat'),sprintf('T%d',app_instance));
 
 
 
