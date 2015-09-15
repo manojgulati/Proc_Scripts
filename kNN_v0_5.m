@@ -24,15 +24,15 @@ feat_len1 = [13 14 16 15 10 12 1 5 11 17];
 feat_len2 = [1 4 4 4 1 4 4 4 4 4];
 
 % feat_len = [1:15];
-temp_var = 55;
+temp_var = 54;
 app_instance_train = 5;
-app_instance = 5;
+app_instance = 4;
 
-dim1 = 1;
+dim = 1;
 %
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_Features_SET3_CM/compressed_features/FEAT150/';
-Path3 = strcat('same_test_train/Inst',int2str(dim1),'/');
+Path2 = '/TD16384_Features_SET3_DM/compressed_features/FEAT150/';
+Path3 = strcat('DIM',int2str(dim),'_Fusion/');
 
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
 Path5 = strcat('LC',int2str(app_instance_train),'_');
@@ -49,7 +49,7 @@ Path18 = strcat('CPU',int2str(app_instance),'_');
 Path19 = strcat('PRT',int2str(app_instance),'_');
 
 No_of_test_traces = 10;
-No_of_data_traces = 8;
+No_of_data_traces = 10;
 %%
 disp('Loading training data');
 
@@ -101,14 +101,14 @@ Y = [ones(No_of_data_traces,1); 2*ones(No_of_data_traces,1); 3*ones(No_of_data_t
 
 % disp('Starting learning phase using KNN');
 %
-mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',3);    
-save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len1),'.mat'),'mdl');
-% load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(temp_var),'_',int2str(feat_len1),'.mat'),'mdl');
+% mdl = ClassificationKNN.fit(X,Y,'NumNeighbors',3);    
+% save(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(app_instance_train),'_',int2str(feat_len1),'.mat'),'mdl');
+load(strcat(Path1,Path2,Path3,'Six_Class','_KNN_Learn_CM',int2str(app_instance_train),'_',int2str(feat_len1),'.mat'),'mdl');
 
 %%
 disp('Starting testing phase using KNN');
 
-index=9;
+index=1;
 while(index<No_of_test_traces+1)
     
     % load backrgound data for testing
@@ -149,10 +149,10 @@ while(index<No_of_test_traces+1)
     
 index=index+1;
 end
-%%
+%
 clc;
 Xnew = BGN_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -164,7 +164,7 @@ x6=sum((label)==6);
 Z1=[x1 x2 x3 x4 x5 x6];
 
 Xnew = LC_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -176,7 +176,7 @@ x6=sum((label)==6);
 Z2=[x1 x2 x3 x4 x5 x6];
 
 Xnew = LCD_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -188,7 +188,7 @@ x6=sum((label)==6);
 Z3=[x1 x2 x3 x4 x5 x6];
 
 Xnew = CFL_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -200,7 +200,7 @@ x6=sum((label)==6);
 Z4=[x1 x2 x3 x4 x5 x6];
 
 Xnew = CPU_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -212,7 +212,7 @@ x6=sum((label)==6);
 Z5=[x1 x2 x3 x4 x5 x6];
 
 Xnew = PRT_Test';
-for i=(1:2)
+for i=(1:No_of_test_traces)
     [label(i,:),score,cost] = predict(mdl,Xnew(i,:));
 end
 x1=sum((label)==1);
@@ -224,7 +224,7 @@ x6=sum((label)==6);
 Z6=[x1 x2 x3 x4 x5 x6];
 
 Z = [Z1; Z2; Z3; Z4; Z5; Z6;];
-Z=Z./2;
+Z=Z./No_of_test_traces;
 avg = sum(diag(Z))/6;
 %
 save(strcat(Path1, Path2,Path3, 'Result_',int2str(temp_var),'_',int2str(app_instance),'_',int2str(feat_len1),'.mat'),'Z');

@@ -31,18 +31,14 @@ for d_index = 1:10
         feature(f_index,:) = Desc_stats_ver0_2(temp);
     end
 % save(strcat(Path1,Path2,Path4,Path3,int2str(index),'_TD_stat','_',int2str(d_index),'.mat'),'feature');
-feature = []; % Reset feature matrix to store fresh sub-features
+feature = []; % Reset feature matrix to store fresh
 offset = offset+150;    
 end
 offset = 0;
-
 display(int2str(index));
 
 index=index+1;
 end
-
-
-
 
 
 
