@@ -12,7 +12,7 @@ Temp = [];
         
         load(strcat(Path1,Path2,char(file_names(i)),'_TD_stat_',int2str(dim),'.mat'));
 %         Analyzing one sub-feature i.e. Median at a time
-        Temp = [Temp feature(:,1)];
+        Temp = [Temp feature(:,4)];
     end
     eval(sprintf('X%d = Temp;',i));
 end
