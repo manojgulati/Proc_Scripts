@@ -21,7 +21,7 @@ CFL_Test = [];
 CPU_Test = [];
 PRT_Test = [];
 feat_len1 = [13 14 16 15 10 12 1 5 11 17];
-feat_len2 = [1 4 1 4 1 1 1 1 1 4];
+feat_len2 = [1 1 1 1 1 1 4 1 1 1];
 
 % feat_len = [1:15];
 temp_var = 54;
@@ -31,7 +31,7 @@ app_instance = 4;
 dim = 1;
 %
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_Features_SET3_CM/compressed_features/FEAT150/';
+Path2 = '/TD16384_Features_SET3_DM/compressed_features/FEAT150/';
 Path3 = strcat('DIM',int2str(dim),'_Fusion/');
 
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
@@ -224,7 +224,7 @@ x6=sum((label)==6);
 Z6=[x1 x2 x3 x4 x5 x6];
 
 Z = [Z1; Z2; Z3; Z4; Z5; Z6;];
-Z=Z./No_of_test_traces;
+% Z=Z./No_of_test_traces;
 % avg = sum(diag(Z))/6;
 eval(sprintf('T%d = Z;',app_instance));
 %%

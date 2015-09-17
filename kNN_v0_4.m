@@ -29,7 +29,7 @@ app_instance = 4;
 dim = 4;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015';
-Path2 = '/TD16384_Features_SET3_CM/compressed_features/FEAT150/';
+Path2 = '/TD16384_Features_SET3_DM/compressed_features/FEAT150/';
 Path3 = strcat('DIM',int2str(dim),'/');
 
 Path4 = strcat('BGN_LC',int2str(app_instance_train),'_');
