@@ -5,15 +5,15 @@ clc;
 
 data1 = rand(15,10);
 
-cent = median(data1');
+cent = mean(data1,2);
 % cent1 = cent1';
 cent = cent';
 centroid=[];
 
 for index=(1:15)
-    centroid(index) = median(data1(index,:));
+    centroid(index) = mean(data1(index,:));
 end
-centroid = centroid';
+% centroid = centroid';
     
     
     
