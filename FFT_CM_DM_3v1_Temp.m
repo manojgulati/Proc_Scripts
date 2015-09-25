@@ -7,9 +7,11 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Downloads/RF_Lab data-2/cro_ups_rflabsupply/';
-Path2 = 'BGN1_';
-File_Path = strcat(Path1,Path2);
+Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
+Path2 = 'CFL/';
+Path3 = 'CFL1';
+Path4 = 'Plots_FD_Journal/';
+File_Path = strcat(Path1,Path2,Path3,'_');
 No_of_traces = 100;
 
 % Fetch content from files taken from Redpitaya
@@ -28,8 +30,8 @@ end
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
 % Default value is 75 and 28
-y1  = y1 + 98;
-y2  = y2 + 127;
+y1  = y1 + 113;
+y2  = y2 + 145;
 
 % Scaling factor for digital to analog conversion of ADC values.
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
@@ -107,26 +109,32 @@ subplot(2,1,1);
 plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % semilogx(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-DM|(dBm)');
-title(strcat('Amplitude Spectrum of EMI {',Path2,'} '));
+ylabel('|Y-DM|(dBm)');
+title(strcat('Amplitude Spectrum of EMI'));
 legend('DM EMI');
 ylim([-150 -80]);
+yticks = -150:20:-80;
+set(gca,'YTick',yticks);
 xlim([0.1 5]);
 grid on;
 hold on;
+
 subplot(2,1,2);
 plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-CM|(dBm)');
+yticks = -150:20:-80;
+set(gca,'YTick',yticks);
+xlim([0.1 5]);
+ylabel('|Y-CM|(dBm)');
 xlabel('Frequency (MHz)');
 ylim([-150 -80]);
-xlim([0.1 5]);
 % legend('CM EMI');
 grid on;
-
+%%
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
+% saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
+ConvertPlot4Publication(strcat(Path1,Path4,Path3), 'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 
 %%
 % 

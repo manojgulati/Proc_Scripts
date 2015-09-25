@@ -11,13 +11,13 @@ close all;
 clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'CFL/';
-Path3 = 'CFL5';
-Path4 = 'Plots_TD_Journal/';
+Path2 = 'CPU/';
+Path3 = 'CPU1';
+Path4 = 'Plots_TD_Journal_New/';
 % Path4 = 'FFT256/'
 File_Path = strcat(Path1,Path2,Path3,'_');
 
-No_of_traces = 300;
+No_of_traces = 151;
 L  = 16384;       %signal length
     
 % Fetch content from files taken from Redpitaya
@@ -57,8 +57,8 @@ ampY_2 = ampY_2+y2;
 index=index+1;
 end
 % Taking average of TD EMI data over n No_of_traces
-ampY_1 = ampY_1/150;
-ampY_2 = ampY_2/150;
+ampY_1 = ampY_1/1;
+ampY_2 = ampY_2/1;
 
 %%
 % % Configuration Parameters

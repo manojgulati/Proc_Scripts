@@ -1,18 +1,19 @@
-% Matlab code for computing Frequency Spectrum of Common Mode and Differential Mode components of Conducted EMI and dumping data as CSV file
+% Matlab code for computing Frequency Spectrum of Common Mode and Differential Mode components of Conducted EMI
 % Manoj Gulati
 % IIIT-D
+% This script is used to generate averaged FFTs for Journal/Sensys draft
+% DOM: 25-09-2015
 
 % clear all previously stored variables
 clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30 March 2015/';
-Path3 = 'PRT/'
-Path2 = 'PRT1_';
-Path4 =
-File_Path = strcat(Path1,Path2);
-% File_Path1 = strcat(Path3,Path2);
+Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
+Path3 = 'PRT/';
+Path2 = 'BGN_PRT5_';
+Path4 = 'Processed_FFT/';
+File_Path = strcat(Path1,Path3,Path2);
 
 No_of_traces = 100;
 
@@ -79,6 +80,7 @@ for i = (offset+1):(No_of_traces*index)
     ampY_2(:,(i-offset)) = 2*abs(Y2(1:L/2+1,(i-offset)));
 %     ampY_1(:,i) = 2*(Y1(1:L/2+1,i));
 %     ampY_2(:,i) = 2*(Y2(1:L/2+1,i));
+
 end
 
 % Integrating the amplitude over 100 traces for averaging
@@ -150,7 +152,7 @@ matrix_100(:,1) =f1;
 matrix_100(:,2) =hundred_avg1;
 matrix_100(:,3) =hundred_avg2;
 
-csvwrite(strcat(File_Path,'AVG',int2str(index),'_100.csv'),matrix_100);
+csvwrite(strcat(Path1,Path4,Path2,'AVG',int2str(index),'_100.csv'),matrix_100);
 
 
 index=index+1;

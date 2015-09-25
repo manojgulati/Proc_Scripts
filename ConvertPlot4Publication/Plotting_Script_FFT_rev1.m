@@ -4,17 +4,17 @@ clear all;
 
 %
 AUT_Name = ['LC1'; 'LC2'; 'LC3'; 'LC4';'LC5'];
-AUT_Name1 = ['CFL1';'CFL2';'CFL3';'CFL4';'CFL5';'LCD1';'LCD2';'LCD3';'LCD4';'LCD5';'CPU1';'CPU2';'CPU3';'CPU4';'CPU5';];
+AUT_Name1 = ['CFL1';'CFL2';'CFL3';'CFL4';'CFL5';'LCD1';'LCD2';'LCD3';'LCD4';'LCD5';'CPU1';'CPU2';'CPU3';'CPU4';'CPU5';'PRT1';'PRT2';'PRT3';'PRT4';'PRT5';];
 
-index=1;
+index=16;
 
-while index<6;
+while index<21;
     
 % Dump images here
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/Plots_1/';
 Path3 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/Processed_FFT/';
 Path2 = 'BGN_';
-Path4 = AUT_Name(index,:);
+Path4 = AUT_Name1(index,:);
 File_Path1 = strcat(Path3,Path2,Path4);
 File_Path2 = strcat(Path3,Path4);
 
