@@ -26,6 +26,28 @@ for j=1:30
 %     ylabel('Amplitude (in Volts)')
     
 end
+%%
+clc;
+yticks = -0.00001:0.01:0.1;
+
+dummy=[];
+for j=1:30
+    eval(sprintf('dummy = [dummy X%d(16,:)''];',j));     
+end
+% set(gca,'FontSize', 15);
+boxplot(dummy);
+% ax=gca; 
+grid on; 
+% ylim([-0.00001 30]);
+set(gca,'YTick',yticks);
+ylabel(' Inter-quartile Range (IQR)');
+set(gca, 'XTick',1:30, 'XTickLabel',{'BGN1','BGN2','BGN3','BGN4','BGN5','LC1','LC2','LC3','LC4','LC5','LCD1','LCD2','LCD3','LCD4','LCD5','CFL1','CFL2','CFL3','CFL4','CFL5','CPU1','CPU2','CPU3','CPU4','CPU5','PRT1','PRT2','PRT3','PRT4','PRT5'})
+rotateticklabel(gca,90);
+% ax=gca;
+% c=ax.XTickLabelRotation ;
+% ax.XTickLabelRotation = 45;
+
+ConvertPlot4Publication(strcat(Path1,'IQR_CM'),'height',3.5, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.7,'keepheights','on','keepvertical','on','pdf','off','eps','off','psfrag','off','fig','off');
 
 %%
 temp=[];

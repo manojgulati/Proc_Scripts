@@ -59,9 +59,9 @@ c=get(h,'YTick');
 % repmat(c(1)-.1*(c(2)-c(1)),length(b),1)
 % b=[];
 if rot<180
-    th=text(b,repmat(c(1)-.4*(c(2)-c(1)),length(b),1),a,'HorizontalAlignment','right','rotation',rot);
+    th=text(b,repmat(c(1)-1.2*(c(2)-c(1)),length(b),1),a,'HorizontalAlignment','right','rotation',rot);
 else
-    th=text(b,repmat(c(1)-.4*(c(2)-c(1)),length(b),1),a,'HorizontalAlignment','left','rotation',rot);
+    th=text(b,repmat(c(1)-1.2*(c(2)-c(1)),length(b),1),a,'HorizontalAlignment','left','rotation',rot);
 end
 
 set(h,'XTickLabel',[]);
