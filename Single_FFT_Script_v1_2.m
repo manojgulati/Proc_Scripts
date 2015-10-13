@@ -12,10 +12,10 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'PRT/';
-Path3 = 'PRT5_';
-Path4 = 'FFT256/'
+Path1 = '/Users/manojgulati/Databin/EMI_MSMT_7_OCT_2015/';
+Path2 = 'BGN_OC/';
+Path3 = 'BGN1_';
+Path4 = 'FFT/'
 File_Path = strcat(Path1,Path2,Path3);
 
 No_of_traces = 100;

@@ -7,12 +7,12 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'CFL/';
-Path3 = 'CFL1';
-Path4 = 'Plots_FD_Journal/';
+Path1 = '/Users/manojgulati/Databin/EMI_MSMT_9_OCT_2015/';
+Path2 = 'BGN_CC3/';
+Path3 = 'BGN1';
+Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
-No_of_traces = 100;
+No_of_traces = 99;
 
 % Fetch content from files taken from Redpitaya
 % M1=zeros(16384,2,No_of_traces);
@@ -95,6 +95,7 @@ AmpY_2 = AmpY_2/No_of_traces;
 f = fs/2*linspace(0,1,L/2+1);
 
 %% Paragraph Break
+clc;
 
 % Plotting Complete FFT Spectrum for CM and DM EMI
 Points = 8192;
@@ -112,8 +113,8 @@ plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 ylabel('|Y-DM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI'));
 legend('DM EMI');
-ylim([-150 -80]);
-yticks = -150:20:-80;
+ylim([-150 -50]);
+yticks = -150:20:-50;
 set(gca,'YTick',yticks);
 xlim([0.1 5]);
 grid on;
@@ -123,18 +124,18 @@ subplot(2,1,2);
 plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
-yticks = -150:20:-80;
+yticks = -150:20:-50;
 set(gca,'YTick',yticks);
 xlim([0.1 5]);
 ylabel('|Y-CM|(dBm)');
 xlabel('Frequency (MHz)');
-ylim([-150 -80]);
-% legend('CM EMI');
+ylim([-150 -50]);
+legend('CM EMI');
 grid on;
-%%
+%
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 % saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
-ConvertPlot4Publication(strcat(Path1,Path4,Path3), 'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+ConvertPlot4Publication(strcat(Path1,Path2,Path4,Path3),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 
 %%
 % 
