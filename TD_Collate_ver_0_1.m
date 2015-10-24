@@ -12,7 +12,7 @@ format long e;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path2 = 'LC/';
-Path3 = 'LCD1';
+Path3 = 'CFL3';
 Path4 = 'TD_Collated_Data/';
 
 File_Path = strcat(Path1,Path2,Path3,'_');
@@ -65,8 +65,8 @@ clc;
 load(strcat(Path1,Path4,Path3,'_TD.mat'));
 %
 
-xbin_range = linspace(-0.15,0.15,100);
-[n,xout] = hist(ampY_2,xbin_range);
+xbin_range = linspace(0,0.15,100);
+[n,xout] = hist(abs(ampY_2),xbin_range);
 
 % normalize freq. counts
 norm_n = n/sum(n);
@@ -76,15 +76,15 @@ f=figure;
 % plot(xbin_range,norm_n,'r-');
 % hold on;
 bar(xout,norm_n);
-xlim([-0.15 0.15]);
-ylim([-0.001 0.04]);
-title(Path3);
+xlim([0 0.15]);
+ylim([-0.001 0.2]);
+title('CFL2');
 xlabel('Amplitude (Volts)');
-ylabel('PDF (No units)');
+ylabel('Histogram');
 grid on;
 % saveas(f, strcat(Path1,Path4,Path3,'_PDF.png'));
-% ConvertPlot4Publication(strcat(Path1,Path4,Path3,'_PDF.png'), 'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+ConvertPlot4Publication(strcat(Path1,Path4,'CFL2','_PDF.png'), 'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 
-% close all;
+close all;
 
 

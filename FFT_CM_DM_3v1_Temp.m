@@ -7,12 +7,12 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/EMI_MSMT_9_OCT_2015/';
-Path2 = 'BGN_CC3/';
+Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/EMI_MSMT_24_OCT_2015/';
+Path2 = 'BGN_OC/';
 Path3 = 'BGN1';
 Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
-No_of_traces = 99;
+No_of_traces = 100;
 
 % Fetch content from files taken from Redpitaya
 % M1=zeros(16384,2,No_of_traces);
@@ -110,11 +110,11 @@ subplot(2,1,1);
 plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % semilogx(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % set(gca,'xlim',[0 5]);
-ylabel('|Y-DM|(dBm)');
+ylabel('|Y-CM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI'));
-legend('DM EMI');
-ylim([-150 -50]);
-yticks = -150:20:-50;
+legend('CM EMI');
+ylim([-150 -70]);
+yticks = -150:15:-70;
 set(gca,'YTick',yticks);
 xlim([0.1 5]);
 grid on;
@@ -124,13 +124,13 @@ subplot(2,1,2);
 plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
-yticks = -150:20:-50;
+yticks = -150:15:-70;
 set(gca,'YTick',yticks);
 xlim([0.1 5]);
-ylabel('|Y-CM|(dBm)');
+ylabel('|Y-DM|(dBm)');
 xlabel('Frequency (MHz)');
-ylim([-150 -50]);
-legend('CM EMI');
+ylim([-150 -70]);
+legend('DM EMI');
 grid on;
 %
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
@@ -138,12 +138,11 @@ grid on;
 ConvertPlot4Publication(strcat(Path1,Path2,Path4,Path3),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 
 %%
-% 
-% hundred_avg1 = 10*log10(1000*((AmpY_1.^2)/10^6));
-% hundred_avg2 = 10*log10(1000*((AmpY_2.^2)/10^6));
-% 
-% matrix_100(:,1) =f1;
-% matrix_100(:,2) =hundred_avg1;
-% matrix_100(:,3) =hundred_avg2;
-% 
-% csvwrite(strcat(File_Path,'AVG_100','.csv'),matrix_100);
+
+% data = 10*log10(1000*((AmpY_1.^2)/10^6));
+% save(strcat(Path1,'BGN_Matrix_CC','.mat'),'data');
+% data = [];
+
+
+
+
