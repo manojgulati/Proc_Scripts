@@ -11,16 +11,16 @@ clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path3 = 'PRT/';
-Path2 = 'BGN_PRT5_';
+Path2 = 'PRT1_';
 Path4 = 'Processed_FFT/';
 File_Path = strcat(Path1,Path3,Path2);
 
 No_of_traces = 100;
 
-index=1;
+index=2;
 offset=0;
 
-while index<2
+while index<3
     
 % Fetch content from files taken from Redpitaya
 % M1=zeros(16384,2,No_of_traces);

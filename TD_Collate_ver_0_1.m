@@ -11,11 +11,11 @@ clc;
 format long e;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'LC/';
-Path3 = 'CFL3';
+% Path2 = 'LC/';
+Path3 = 'BGN_LC5';
 Path4 = 'TD_Collated_Data/';
 
-File_Path = strcat(Path1,Path2,Path3,'_');
+% File_Path = strcat(Path1,Path2,Path3,'_');
 
 No_of_traces = 1500;
 L  = 16384;       %signal length
@@ -78,12 +78,12 @@ f=figure;
 bar(xout,norm_n);
 xlim([0 0.15]);
 ylim([-0.001 0.2]);
-title('CFL2');
+title('BGN5');
 xlabel('Amplitude (Volts)');
 ylabel('Histogram');
 grid on;
 % saveas(f, strcat(Path1,Path4,Path3,'_PDF.png'));
-ConvertPlot4Publication(strcat(Path1,Path4,'CFL2','_PDF.png'), 'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+ConvertPlot4Publication(strcat(Path1,Path4,'BGN5','_PDF.png'), 'fontsize', 12, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'eps','off','psfrag','off','fig','off');
 
 close all;
 

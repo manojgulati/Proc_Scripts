@@ -3,14 +3,14 @@ clear all;
 close all;
 
 % Dump images here
-Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/Plots_TD_Journal_New#1/';
+Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/Plots_TD_Journal_New#2/';
 Path3 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
-Path2 = 'CFL';
-Path4 = 'CFL1';
+Path2 = 'PRT';
+Path4 = 'PRT1';
 
 % File_Path1 = strcat(Path3,Path2,Path4);
 File_Path2 = strcat(Path3,Path2,'/',Path4);
-M1(:,:) = importdata(strcat(File_Path2,'_1.csv'));
+M1(:,:) = importdata(strcat(File_Path2,'_100.csv'));
 
 % Fetch content for Channel-1 (Vdm)
 y1(:,1)  = M1(:,1);
@@ -43,8 +43,8 @@ grid on;
 hold on;
 plot(x_axis,y2,'b');
 legend('DM EMI','CM EMI');
-title(strcat('Time Domain plot for EMI [',Path2,']'));
-ConvertPlot4Publication(strcat(Path1,Path4), 'fontsize', 12, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+title(strcat('Time Domain plot for EMI [',Path2,'1]'));
+ConvertPlot4Publication(strcat(Path1,Path2,'1'), 'fontsize', 12, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'eps','off','psfrag','off','fig','off');
 hold off;
 close all;
 
