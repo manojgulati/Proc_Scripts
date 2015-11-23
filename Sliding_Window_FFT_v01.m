@@ -11,16 +11,19 @@ close all;
 offset=0;
 
 % Directory path to store computed FFT plots averaged over 10 second window
-Path1 = '/Users/manojgulati/Databin/CH-1 Test-1k/';
-Path2 = '/Users/manojgulati/Databin/CH-1 Test-1k/';
+Path2 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/';
+Path1 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/Plots_5MHZ/';
+Path3 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/EMI_AVG/';
 
 % Load raw EMI data dump in to memory for computing FFT over sliding window
 % of 10 seconds
 loadContent=dir(Path2);
 
+%%
+
 while (i+1<length(loadContent))
 
-No_of_traces = 20;
+No_of_traces = 10;
 
 % Fetch content from files taken from Redpitaya
 % M1=zeros(16384,2,4+No_of_traces);
@@ -39,8 +42,8 @@ end
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
 % Default value is 75 and 28
-y1  = y1 + 96;
-y2  = y2 + 125;
+y1  = y1 + 113;
+y2  = y2 + 145;
 
 % Scaling factor for digital to analog conversion of ADC values.
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
@@ -48,17 +51,17 @@ y1=y1*0.000131;
 y2=y2*0.000131;
 
 % Configuration Parameters
-fs = 1.953125*(10^6);  %sample frequency in Hz
+fs = 15.625*(10^6);  %sample frequency in Hz
 T  = 1/fs;        %sample period in s
 L  = 16384;       %signal length
 t  = (0:L-1) * T; %time vector
 %
-figure;
-plot(y1(:,:));
-% hold on;
-% plot(y2(:,1));
-ylim([-0.5 0.5]);
-hold off;
+% figure;
+% plot(y1(:,:));
+% % hold on;
+% % plot(y2(:,1));
+% ylim([-0.5 0.5]);
+% hold off;
 
 %% Paragraph Break
 
@@ -103,30 +106,36 @@ subplot(2,1,1);
 plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % semilogx(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-DM|(dBm)');
-title(strcat('Amplitude Spectrum of EMI {',Path2,'} '));
-legend('DM EMI');
+ylabel('Amplitude|Y-CM|(dBm)');
+title(strcat('Amplitude Spectrum of EMI {',loadContent(i-No_of_traces+1,1).name,'} '));
+legend('CM EMI');
 ylim([-145 -20]);
-xlim([0 1]);
+xlim([0 5]);
 grid on;
 hold on;
 subplot(2,1,2);
 plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 % set(gca,'xlim',[0 5]);
-ylabel('Amplitude|Y-CM|(dBm)');
+ylabel('Amplitude|Y-DM|(dBm)');
 xlabel('Frequency (MHz)');
-ylim([-150 -20]);
-xlim([0 1]);
-legend('CM EMI');
+ylim([-145 -20]);
+xlim([0 5]);
+legend('DM EMI');
 grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-saveas(gcf,strcat(Path1,'FFT_X1_',loadContent(i-No_of_traces+1,1).name,'.png'));
+% saveas(gcf,strcat(Path1,'FFT_X1_',loadContent(i-No_of_traces+1,1).name,'.png'));
+% ConvertPlot4Publication(strcat(Path1,'FFT_X5_',loadContent(i-No_of_traces+1,1).name),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.7,'pdf','off','eps','off','psfrag','off','fig','off');
 
-% close all;
+close all;
 
-offset = offset+20;
+CM_Data = 10*log10(1000*((AmpY_1.^2)/10^6));
+DM_Data = 10*log10(1000*((AmpY_2.^2)/10^6));
+
+save(strcat(Path3,'FFT_',loadContent(i-No_of_traces+1,1).name,'.mat'),'CM_Data','DM_Data');  % function form
+
+offset = offset+10;
 end
 
 
