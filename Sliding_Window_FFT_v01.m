@@ -39,6 +39,7 @@ for j = 1:No_of_traces
     y2(:,j)  = M1(:,2,j);
 end
 
+
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
 % Default value is 75 and 28
@@ -55,15 +56,8 @@ fs = 15.625*(10^6);  %sample frequency in Hz
 T  = 1/fs;        %sample period in s
 L  = 16384;       %signal length
 t  = (0:L-1) * T; %time vector
-%
-% figure;
-% plot(y1(:,:));
-% % hold on;
-% % plot(y2(:,1));
-% ylim([-0.5 0.5]);
-% hold off;
 
-%% Paragraph Break
+% % Paragraph Break
 
 % Initialising null vectors to store EMI samples
 ampY_1 = zeros(L/2+1,No_of_traces);
@@ -90,7 +84,7 @@ AmpY_2 = AmpY_2/No_of_traces;
 % Computing f vector for length fs/2
 f = fs/2*linspace(0,1,L/2+1);
 
-%% Paragraph Break
+% % Paragraph Break
 
 % Plotting Complete FFT Spectrum for CM and DM EMI
 Points = 8192;
@@ -110,7 +104,7 @@ ylabel('Amplitude|Y-CM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI {',loadContent(i-No_of_traces+1,1).name,'} '));
 legend('CM EMI');
 ylim([-145 -20]);
-xlim([0 5]);
+xlim([0 1]);
 grid on;
 hold on;
 subplot(2,1,2);
@@ -120,20 +114,24 @@ plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
 ylabel('Amplitude|Y-DM|(dBm)');
 xlabel('Frequency (MHz)');
 ylim([-145 -20]);
-xlim([0 5]);
+xlim([0 1]);
 legend('DM EMI');
 grid on;
 
-% Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
+% % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 % saveas(gcf,strcat(Path1,'FFT_X1_',loadContent(i-No_of_traces+1,1).name,'.png'));
-% ConvertPlot4Publication(strcat(Path1,'FFT_X5_',loadContent(i-No_of_traces+1,1).name),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.7,'pdf','off','eps','off','psfrag','off','fig','off');
+ConvertPlot4Publication(strcat(Path3,'FFT_X1_',loadContent(i-No_of_traces+1,1).name),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.7,'pdf','off','eps','off','psfrag','off','fig','off');
 
 close all;
 
-CM_Data = 10*log10(1000*((AmpY_1.^2)/10^6));
-DM_Data = 10*log10(1000*((AmpY_2.^2)/10^6));
+% CM_Data = 10*log10(1000*((AmpY_1.^2)/10^6));
+% DM_Data = 10*log10(1000*((AmpY_2.^2)/10^6));
 
-save(strcat(Path3,'FFT_',loadContent(i-No_of_traces+1,1).name,'.mat'),'CM_Data','DM_Data');  % function form
+% save(strcat(Path3,'FFT_',loadContent(i-No_of_traces+1,1).name,'.mat'),'CM_Data','DM_Data');  % function form
+% clear CM_Data;
+% clear DM_Data;
+% clear AmpY_1;
+% clear AmpY_2;
 
 offset = offset+10;
 end

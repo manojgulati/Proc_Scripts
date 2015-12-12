@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/EMI_MSMT_13_NOV_2015/';
-Path2 = 'Test/';
+Path1 = '/Users/manojgulati/Databin/EMI_9Dec/';
+Path2 = 'Test_7/';
 Path3 = 'BGN1';
 Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
@@ -30,8 +30,8 @@ end
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 
 % This will be added to compensate for avg. noise captured by AFE of Redpitaya when terminated with matched load.
 % Default value is 75 and 28
-y1  = y1 + 113;
-y2  = y2 + 145;
+y1  = y1 + 97;
+y2  = y2 + 127;
 
 % Scaling factor for digital to analog conversion of ADC values.
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
