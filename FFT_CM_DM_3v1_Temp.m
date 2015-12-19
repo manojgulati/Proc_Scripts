@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/EMI_9Dec/';
-Path2 = 'Test_7/';
+Path1 = '/Users/manojgulati/Databin/EMI_17Dec/';
+Path2 = 'Test_4/';
 Path3 = 'BGN1';
 Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
@@ -132,7 +132,7 @@ ylabel('|Y-DM|(dBm)');
 xlabel('Frequency (MHz)');
 legend('DM EMI');
 grid on;
-%
+
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 % saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
 ConvertPlot4Publication(strcat(Path1,Path2,Path4,Path3,'_5'),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
