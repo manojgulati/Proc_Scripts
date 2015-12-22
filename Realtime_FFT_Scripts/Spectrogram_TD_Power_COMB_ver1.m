@@ -1,3 +1,5 @@
+% Plotting script showing spectrogram of averaged EMI data and Time-domain 
+% power data combined
 % Manoj Gulati
 % IIIT-Delhi
 % DOI: 22st Dec, 2015
@@ -27,7 +29,7 @@ for i=1:No_of_files
     clear CM_Data;
 end
 
-%% Print start and end timestamp of FFT data
+% Print start and end timestamp of FFT data
 clc;
 display('Start TS:');
 display(loadContent(1,1).name);
@@ -35,13 +37,21 @@ display('End TS:');
 display(loadContent(No_of_files,1).name);
 
 %%
-clc;
+
 % Plot spectrogram using stacked FFT data retrived from averaged FFT frames
-xlim = linspace(1,No_of_files,100);
+figure
+subplot(2,1,1);
+xlim = linspace(No_of_files,1,1);
 imagesc(xlim,f1,M1);
 xlabel('Time (in seconds)');
 ylabel('Frequency (in MHz)');
-colorbar;
+h = colorbar;
+ylabel(h, 'dBm')
 
-
-
+subplot(2,1,2);
+xlim = linspace(No_of_files,1,1);
+imagesc(xlim,f1,M1);
+xlabel('Time (in seconds)');
+ylabel('Frequency (in MHz)');
+h = colorbar;
+ylabel(h, 'dBm')
