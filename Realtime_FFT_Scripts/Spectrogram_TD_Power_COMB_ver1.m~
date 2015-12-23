@@ -8,10 +8,13 @@
 clc;
 clear all;
 close all;
+format long g;
 
 % Path for Averaged FFT data 
 Path1 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/';
 Path2 = 'Data/';
+% Path for Smart meter data 
+Path3 = '/Users/manojgulati/Databin/MSMT1_20NOV/Smart_Meter_Data/';
 
 % Load averaged FFT data in to 2D matrix M1 having rows specifying frequency 
 % range and columns showing time duration of data measurements.
@@ -36,17 +39,22 @@ display(loadContent(1,1).name);
 display('End TS:');
 display(loadContent(No_of_files,1).name);
 
-%%
+% Load time-domain smart meter data
+M2 = importdata(strcat(Path3,'2.csv'));
+[x1] = M2.data(:,1);
+[x2,y2] = unique(round(M2.data(:,1)));
 
+%%
+clc;
 % Plot spectrogram using stacked FFT data retrived from averaged FFT frames
 figure
 subplot(2,1,1);
-xlim = linspace(No_of_files,1,1);
-imagesc(xlim,f1,M1);
-xlabel('Time (in seconds)');
-ylabel('Frequency (in MHz)');
-h = colorbar;
-ylabel(h, 'dBm')
+ax=gca;
+plot(unique(round(M2.data(y2,1)))/10000,M2.data(y2,11));
+% xlim([1448.0224 1448.0225]);
+xlabel('Unix timestamp (in seconds)');
+ylabel('Real Power (in Watts)');
+grid on;
 
 subplot(2,1,2);
 xlim = linspace(No_of_files,1,1);
@@ -55,3 +63,4 @@ xlabel('Time (in seconds)');
 ylabel('Frequency (in MHz)');
 h = colorbar;
 ylabel(h, 'dBm')
+grid on;

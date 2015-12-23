@@ -8,10 +8,13 @@
 clc;
 clear all;
 close all;
+format long g;
 
 % Path for Averaged FFT data 
 Path1 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/';
 Path2 = 'Data/';
+% Path for Smart meter data 
+Path3 = '/Users/manojgulati/Databin/MSMT1_20NOV/Smart_Meter_Data/';
 
 % Load averaged FFT data in to 2D matrix M1 having rows specifying frequency 
 % range and columns showing time duration of data measurements.
@@ -35,6 +38,12 @@ display('Start TS:');
 display(loadContent(1,1).name);
 display('End TS:');
 display(loadContent(No_of_files,1).name);
+
+% Load time-domain smart meter data
+M2 = importdata(strcat(Path1,'2.csv'));
+[x1] = M2.data(:,1);
+[x2,y2] = unique(round(M2.data(:,1)));
+
 
 %%
 
