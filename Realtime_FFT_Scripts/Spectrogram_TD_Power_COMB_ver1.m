@@ -52,28 +52,32 @@ end_time = 1448022501;
 clc;
 
 % Plot spectrogram using stacked FFT data retrived from averaged FFT frames
-figure
+% figure;
+figure('units','normalized','outerposition',[0 0 1 1]);
+
 subplot(2,1,1);
 ax=gca;
 plot(x2,M2.data(y2,11));
 xlim([start_time end_time]);
 % set(gca,'XTickLabel',[1:11]);
-set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',12);
-rotateXLabels(gca,25);
-xlabel('Time (in seconds)','FontSize',17);
-ylabel('Real Power (in Watts)','FontSize',17);
+set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',15);
+% rotateXLabels(gca,25);
+xlabel('Time (in seconds)','FontSize',18);
+ylabel('Real Power (in Watts)','FontSize',18);
 grid on;
 
 subplot(2,1,2);
 x_lim = linspace(No_of_files,1,1);
 imagesc(x_lim,f1,M1);
-set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',12);
-rotateXLabels(gca,25);
-% xlabel('Time (in seconds)');
-ylabel('Frequency (in MHz)','FontSize',17);
+set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',15);
+% rotateXLabels(gca,25);
+xlabel('Time (in seconds)','FontSize',18);
+ylabel('Frequency (in MHz)','FontSize',18);
 h = colorbar;
-ylabel(h, 'Amplitude (in dBm)','FontSize',17);
+ylabel(h, 'Amplitude (in dBm)','FontSize',18);
 grid on;
 
+%
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 % ConvertPlot4Publication(strcat(Path1,'Spectrogram_TD_COMB'),'width',3,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+% saveas(gcf,strcat(Path1,'Spectrogram_TD_COMB_visualize','.png'));
