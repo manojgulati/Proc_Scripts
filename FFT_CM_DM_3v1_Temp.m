@@ -7,8 +7,8 @@ clear all;
 close all;
 clc;
 
-Path1 = '/Users/manojgulati/Databin/EMI_17Dec/';
-Path2 = 'Test_4/';
+Path1 = '/Users/manojgulati/Databin/EMI_23Dec/';
+Path2 = 'Test_i_repeat/';
 Path3 = 'BGN1';
 Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
