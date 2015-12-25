@@ -3,7 +3,7 @@
 % Manoj Gulati
 % IIIT-Delhi
 % DOI: 22st Dec, 2015
-% DOM: 22st Dec, 2015
+% DOM: 25th Dec, 2015
 
 clc;
 clear all;
@@ -11,12 +11,12 @@ close all;
 format long g;
 
 % Path for Averaged FFT data 
-Path1 = '/Users/manojgulati/Databin/MSMT1_20NOV/';
+Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/';
 Path4 = 'EMI_Data/';
 Path2 = 'Data/';
 % Path for Smart meter data 
-Path3 = '/Users/manojgulati/Databin/MSMT1_20NOV/Smart_Meter_Data/';
-
+Path3 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/Smart_Meter_Data/';
+Path5 = '25-December-2015.csv';
 % Load averaged FFT data in to 2D matrix M1 having rows specifying frequency 
 % range and columns showing time duration of data measurements.
 loadContent=dir(strcat(Path1,Path4,Path2,'*.mat'));
@@ -41,35 +41,36 @@ display('End TS:');
 display(loadContent(No_of_files,1).name);
 
 % Load time-domain smart meter data
-M2 = importdata(strcat(Path3,'2.csv'));
-[x1] = M2.data(:,1);
-[x2,y2] = unique(round(M2.data(:,1)));
+M2 = importdata(strcat(Path3,Path5));
+[x1] = M2(:,1);
+[x2,y2] = unique(round(M2(:,1)));
 
 %%
 % Timestamp for time domain and frequency domain plot
-start_time = 1448022491;
-end_time = 1448022501;
+start_time = 1451022708;
+end_time = 1451022959;
 clc;
 
 % Plot spectrogram using stacked FFT data retrived from averaged FFT frames
 % figure;
 figure('units','normalized','outerposition',[0 0 1 1]);
+t_axis = linspace(start_time,end_time,11);
 
 subplot(2,1,1);
 ax=gca;
-plot(x2,M2.data(y2,11));
+plot(x2,M2(y2,3));
 xlim([start_time end_time]);
-% set(gca,'XTickLabel',[1:11]);
-set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',15);
+set(gca,'XTick',t_axis);
+set(gca,'XTickLabel',[UTC_to_IST(t_axis)],'FontSize',15);
 % rotateXLabels(gca,25);
 xlabel('Time (in seconds)','FontSize',18);
 ylabel('Real Power (in Watts)','FontSize',18);
 grid on;
 
 subplot(2,1,2);
-x_lim = linspace(No_of_files,1,1);
+x_lim = linspace(1,No_of_files,10);
 imagesc(x_lim,f1,M1);
-set(gca,'XTickLabel',[UTC_to_IST(start_time:end_time)],'FontSize',15);
+set(gca,'XTickLabel',[UTC_to_IST(t_axis)],'FontSize',15);
 % rotateXLabels(gca,25);
 xlabel('Time (in seconds)','FontSize',18);
 ylabel('Frequency (in MHz)','FontSize',18);

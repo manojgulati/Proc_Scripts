@@ -9,16 +9,16 @@ clc;
 clear all;
 close all;
 
-Path1 = '/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/';
+Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/EMI_Data/';
 Path2 = 'Plots/';
 Path3 = 'Data/';
 
-loadContent=dir('/Users/manojgulati/Databin/MSMT1_20NOV/EMI_Data/*.csv');
+loadContent=dir(strcat(Path1,'*.csv'));
 No_of_files = size(loadContent,1);
 No_of_traces = 10;
 
 offset = 0;
-while(offset<=100)
+while(offset<=No_of_files)
 
 for i=1:No_of_traces
     M1(:,:,i) = dlmread(strcat(Path1,loadContent(i+offset,1).name),'');
@@ -110,7 +110,6 @@ display('Check2:');
 display(i-No_of_traces+offset+1);
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
-% saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
 ConvertPlot4Publication(strcat(Path1,Path2,'FFT_X5_',loadContent(i-No_of_traces+offset+1,1).name),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 close all;
 
@@ -118,7 +117,7 @@ CM_Data = 10*log10(1000*((AmpY_1.^2)/10^6));
 % DM_Data = 10*log10(1000*((AmpY_2.^2)/10^6));
 
 % Store averaged FFT data as mat files
-save(strcat(Path1,Path3,'Data_',loadContent(i-No_of_traces+offset+1,1).name,'.mat'),'CM_Data');  % function form
+% save(strcat(Path1,Path3,'Data_',loadContent(i-No_of_traces+offset+1,1).name,'.mat'),'CM_Data');  % function form
 % clear variables
 clear CM_Data;
 clear DM_Data;
