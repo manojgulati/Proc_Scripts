@@ -41,7 +41,7 @@ y2  = y2 + 127;
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
 y1=y1*0.000131;
 y2=y2*0.000131;
-%
+%%
 % Configuration Parameters
 % fs = 1.953125*(10^6);  %sample frequency in Hz
 fs = 15.625*(10^6);  %sample frequency in Hz
