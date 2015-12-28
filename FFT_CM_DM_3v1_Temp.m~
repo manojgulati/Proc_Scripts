@@ -16,7 +16,7 @@ clc;
 Path1 = '/Users/manojgulati/Databin/EMI_23Dec/';
 Path2 = 'Test_i_repeat/';
 Path3 = 'BGN1';
-Path4 = 'FFT_Test/';
+Path4 = 'FFT/';
 File_Path = strcat(Path1,Path2,Path3,'_');
 No_of_traces = 100;
 
@@ -92,12 +92,12 @@ for i = 1:No_of_traces
     ampY_2(:,i) = (Y2(1:L/2,i));
 end
 
-% Integrating the amplitude over 100 traces for averaging
+%% Integrating the amplitude over 100 traces for averaging
 AmpY_1 = sum(ampY_1,2);
 AmpY_2 = sum(ampY_2,2);
-% Averaging over 100 traces
-AmpY_1 = (AmpY_1)/No_of_traces;
-AmpY_2 = (AmpY_2)/No_of_traces;
+%% Averaging over 100 traces
+AmpY_1 = abs(AmpY_1)/No_of_traces;
+AmpY_2 = abs(AmpY_2)/No_of_traces;
 
 % Computing f vector for length fs/2
 f = (fs/2-1/T)*linspace(0,1,L/2);
@@ -111,36 +111,36 @@ f1 = f/1000000;
 %Plot spectrum.
 % figure('units','normalized','outerposition',[0 0 1 1]);
 set(gcf,'Color','w');  %Make the figure background white
-% subplot(2,1,1);
-plot(f1,10*log10(1000*(abs(AmpY_1.^2)/10^6)),'r');
+subplot(2,1,1);
+plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % semilogx(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
 % set(gca,'xlim',[0 5]);
 ylabel('|Y-CM|(dBm)');
 title(strcat('Amplitude Spectrum of EMI'));
 legend('CM EMI');
-ylim([-165 -55]);
-yticks = -165:15:-55;
-set(gca,'YTick',yticks);
+% ylim([-145 -35]);
+% yticks = -145:15:-35;
+% set(gca,'YTick',yticks);
 xlim([0.01 5]);
 grid on;
 hold on;
 
-% subplot(2,1,2);
-% plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
-% % semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
-% % set(gca,'xlim',[0 5]);
-% ylim([-165 -55]);
-% yticks = -165:15:-55;
+subplot(2,1,2);
+plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
+% semilogx(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
+% set(gca,'xlim',[0 5]);
+% yticks = -145:15:-35;
 % set(gca,'YTick',yticks);
-% xlim([0.01 5]);
-% ylabel('|Y-DM|(dBm)');
-% xlabel('Frequency (MHz)');
-% legend('DM EMI');
-% grid on;
+% ylim([-145 -35]);
+xlim([0.01 5]);
+ylabel('|Y-DM|(dBm)');
+xlabel('Frequency (MHz)');
+legend('DM EMI');
+grid on;
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
 % saveas(gcf,strcat(File_Path,'_visualize_X5_',int2str(Points),'.png'));
-ConvertPlot4Publication(strcat(Path1,Path2,Path4,Path3,'_5_d'),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
+ConvertPlot4Publication(strcat(Path1,Path2,Path4,Path3,'_5_New3'),'height',4, 'width',6,'fontsize', 10, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'pdf','off','eps','off','psfrag','off','fig','off');
 
 %%
 

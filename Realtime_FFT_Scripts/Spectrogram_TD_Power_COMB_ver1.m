@@ -11,11 +11,11 @@ close all;
 format long g;
 
 % Path for Averaged FFT data 
-Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/DPO/';
+Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/';
 Path4 = 'EMI_Data/';
 Path2 = 'Data/';
 % Path for Smart meter data 
-Path3 = '/Users/manojgulati/Databin/MSMT_25DEC/DPO/Smart_Meter_Data/';
+Path3 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/Smart_Meter_Data/';
 Path5 = '25-December-2015.csv';
 % Load averaged FFT data in to 2D matrix M1 having rows specifying frequency 
 % range and columns showing time duration of data measurements.
@@ -61,7 +61,7 @@ ax=gca;
 plot(x2,M2(y2,3));
 xlim([start_time end_time]);
 set(gca,'XTick',t_axis);
-set(gca,'XTickLabel',[UTC_to_IST(t_axis)],'FontSize',15);
+set(gca,'XTickLabel',[t_axis],'FontSize',15);
 xlabel('Time (in seconds)','FontSize',18);
 ylabel('Real Power (in Watts)','FontSize',18);
 grid on;
@@ -69,7 +69,7 @@ grid on;
 subplot(2,1,2);
 x_lim = linspace(1,No_of_files,No_of_files);
 imagesc(x_lim,f1,M1);
-set(gca,'XTickLabel',[UTC_to_IST(t_axis)],'FontSize',15);
+set(gca,'XTickLabel',[t_axis],'FontSize',15);
 xlabel('Time (in seconds)','FontSize',18);
 ylabel('Frequency (in MHz)','FontSize',18);
 h = colorbar;

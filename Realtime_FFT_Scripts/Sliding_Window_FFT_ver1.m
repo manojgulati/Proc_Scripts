@@ -9,7 +9,7 @@ clc;
 clear all;
 close all;
 
-Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/DPO/EMI_Data/';
+Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/EMI_Data/';
 Path2 = 'Plots/';
 Path3 = 'Data/';
 
@@ -41,14 +41,15 @@ y2  = y2 + 127;
 % Resolution = 2*Vp/2^14 i.e. 2*1.079V/16384 = 0.0001317 
 y1=y1*0.000131;
 y2=y2*0.000131;
-%
+
 % Configuration Parameters
 % fs = 1.953125*(10^6);  %sample frequency in Hz
 fs = 15.625*(10^6);  %sample frequency in Hz
 del_t  = 1/fs;        %sample period in s
 L  = 16384;       %signal length
 t  = (0:L-1) * del_t; %time vector
-T = L*del_t;
+T = L*del_t; % Total time of measurement
+del_f = 1/T; % Min. Freq. resolution (in Hz)
 
 % Initialising null vectors to store EMI samples
 ampY_1 = zeros(L/2,No_of_traces);
@@ -65,10 +66,10 @@ for i = 1:No_of_traces
     ampY_2(:,i) = abs(Y2(1:L/2,i));
 end
 
-% Integrating the amplitude over 100 traces for averaging
+% Integrating the amplitude over 10 traces for averaging
 AmpY_1 = sum(ampY_1,2);
 AmpY_2 = sum(ampY_2,2);
-% Averaging over 100 traces
+% Averaging over 10 traces
 AmpY_1 = AmpY_1/No_of_traces;
 AmpY_2 = AmpY_2/No_of_traces;
 
@@ -80,30 +81,29 @@ Points = 8192;
 f1 = f/1000000;
 
 % Plot Spectrum
-% figure;
-set(gcf,'Color','w');  %Make the figure background white
-subplot(2,1,1);
-plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
-ylabel('|Y-CM|(dBm)');
-title(strcat('Amplitude Spectrum of EMI'));
-legend('CM EMI');
-ylim([-145 -35]);
-yticks = -145:15:-35;
-set(gca,'YTick',yticks);
-xlim([0.01 5]);
-grid on;
-hold on;
-
-subplot(2,1,2);
-plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
-yticks = -145:15:-35;
-set(gca,'YTick',yticks);
-ylim([-145 -35]);
-xlim([0.01 5]);
-ylabel('|Y-DM|(dBm)');
-xlabel('Frequency (MHz)');
-legend('DM EMI');
-grid on;
+% set(gcf,'Color','w');  %Make the figure background white
+% subplot(2,1,1);
+% plot(f1,10*log10(1000*((AmpY_1.^2)/10^6)),'r');
+% ylabel('|Y-CM|(dBm)');
+% title(strcat('Amplitude Spectrum of EMI'));
+% legend('CM EMI');
+% ylim([-145 -35]);
+% yticks = -145:15:-35;
+% set(gca,'YTick',yticks);
+% xlim([0.01 5]);
+% grid on;
+% hold on;
+% 
+% subplot(2,1,2);
+% plot(f1,10*log10(1000*((AmpY_2.^2)/10^6)),'b');
+% yticks = -145:15:-35;
+% set(gca,'YTick',yticks);
+% ylim([-145 -35]);
+% xlim([0.01 5]);
+% ylabel('|Y-DM|(dBm)');
+% xlabel('Frequency (MHz)');
+% legend('DM EMI');
+% grid on;
 
 display('Check1:');
 display(i);
