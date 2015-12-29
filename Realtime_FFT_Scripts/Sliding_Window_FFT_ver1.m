@@ -9,7 +9,7 @@ clc;
 clear all;
 close all;
 
-Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/CFL/EMI_Data/';
+Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/DPO/EMI_Data/';
 Path2 = 'Plots/';
 Path3 = 'Data/';
 
@@ -105,8 +105,8 @@ f1 = f/1000000;
 % legend('DM EMI');
 % grid on;
 
-display('Check1:');
-display(i);
+% display('Check1:');
+% display(i);
 display('Check2:');
 display(i-No_of_traces+offset+1);
 
