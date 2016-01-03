@@ -107,7 +107,7 @@ f1 = f/1000000;
 
 % display('Check1:');
 % display(i);
-display('Check2:');
+% display('Check2:');
 display(i-No_of_traces+offset+1);
 
 % Function to plot as per IEEE publication specifications in 4 formats eps, fig, PDF and png
@@ -117,8 +117,11 @@ display(i-No_of_traces+offset+1);
 CM_Data = 10*log10(1000*((AmpY_1.^2)/10^6));
 % DM_Data = 10*log10(1000*((AmpY_2.^2)/10^6));
 
+% Write timestamp with all averaged FFT traces to get index of missing values
+Timestamp = round(str2num(loadContent(i-No_of_traces+offset+1,1).name(1:end-4)));
+
 % Store averaged FFT data as mat files
-save(strcat(Path1,Path3,'Data_',loadContent(i-No_of_traces+offset+1,1).name,'.mat'),'CM_Data');  % function form
+save(strcat(Path1,Path3,loadContent(i-No_of_traces+offset+1,1).name,'.mat'),'CM_Data','Timestamp');  % function form
 % clear variables
 clear CM_Data;
 clear DM_Data;
