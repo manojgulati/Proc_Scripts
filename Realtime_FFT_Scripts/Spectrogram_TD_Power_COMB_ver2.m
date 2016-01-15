@@ -3,7 +3,7 @@
 % Manoj Gulati
 % IIIT-Delhi
 % DOI: 22st Dec, 2015
-% DOM: 28th Dec, 2015
+% DOM: 2nd Jan, 2016
 
 clc;
 clear all;
@@ -11,14 +11,14 @@ close all;
 format long g;
 
 % Path for Averaged FFT data 
-Path1 = '/Users/manojgulati/Databin/MSMT_25DEC/DPO/';
+Path1 = '/Users/manojgulati/Databin/MSMT_5Jan/Desktop-1/';
 Path4 = 'EMI_Data/';
 Path2 = 'Data/';
 Path3 = 'Processed_EMI/';
 
 % Path for Smart meter data 
 Path5 = strcat(Path1,'Smart_Meter_Data/');
-Path6 = '25-December-2015.csv';
+Path6 = '13-January-2016.csv';
 
 % Load averaged and preprocessed FFT data
 load(strcat(Path1,Path4,Path3,'Processed_EMI','.mat'));
