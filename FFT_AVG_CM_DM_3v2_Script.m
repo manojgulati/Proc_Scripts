@@ -11,14 +11,14 @@ clc;
 
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/';
 Path3 = 'PRT/';
-Path2 = 'PRT1_';
+Path2 = 'BGN_PRT2_';
 Path4 = 'Processed_FFT/';
 File_Path = strcat(Path1,Path3,Path2);
 
 No_of_traces = 100;
 
 index=2;
-offset=0;
+offset=100;
 
 while index<3
     
@@ -30,9 +30,9 @@ end
 
 for i = (offset+1):(No_of_traces*index)
     % Fetch content for Channel-1 (Vdm)
-    y1(:,(i-offset))  = M1(:,1,(i-offset));
+    y1(:,(i-offset))  = M1(:,1,(i));
     % Fetch content for Channel-2 (Earth)
-    y2(:,(i-offset))  = M1(:,2,(i-offset));
+    y2(:,(i-offset))  = M1(:,2,(i));
 end
 
 % Adding offset as precribed by redpitaya wiki after measurement data collected using 50 ohm termination. 

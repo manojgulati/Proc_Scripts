@@ -9,7 +9,7 @@ clc;
 clear all;
 close all;
 
-Path1 = '/Users/manojgulati/Databin/MSMT_5Jan/Desktop-1/EMI_Data/';
+Path1 = '/Users/manojgulati/Databin/MSMT_16Jan/BGN-Test/EMI_Data/';
 Path2 = 'Plots/';
 Path3 = 'Data/';
 

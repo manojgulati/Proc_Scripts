@@ -6,9 +6,9 @@ clear all;
 AUT_Name = ['LC1'; 'LC2'; 'LC3'; 'LC4';'LC5'];
 AUT_Name1 = ['CFL1';'CFL2';'CFL3';'CFL4';'CFL5';'LCD1';'LCD2';'LCD3';'LCD4';'LCD5';'CPU1';'CPU2';'CPU3';'CPU4';'CPU5';'PRT1';'PRT2';'PRT3';'PRT4';'PRT5';];
 
-index=16;
+index=17;
 
-while index<17;
+while index<18;
     
 % Dump images here
 Path1 = '/Users/manojgulati/Documents/Algo_Testing_Data/30_March_2015/Plots_FD_Journal_New/';
@@ -35,12 +35,12 @@ hold off;
 ylabel('Amplitude (dBm)');
 xlabel('Frequency (MHz)')
 title(strcat('Frequency Spectrum of DM EMI [','PRT1','] '));
-legend('BGN',Path4);
+legend('BGN','PRT1');
 ylim([-150 -70]);
 % % ylim([0 0.5e-6]);
 xlim([0 5]);
 grid on;
-ConvertPlot4Publication(strcat(Path1,'PRT1','_DM'), 'fontsize', 12, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'eps','off','psfrag','off','fig','off')
+ConvertPlot4Publication(strcat(Path1,Path4,'_DM'), 'fontsize', 12, 'fontname', 'Times New Roman', 'samexaxes', 'on','linewidth',0.5,'eps','off','psfrag','off','fig','off')
 close all;
 
 % Plot Figure for CM EMI BGND and AUT
@@ -55,7 +55,7 @@ hold off;
 ylabel('Amplitude (dBm)');
 xlabel('Frequency (MHz)')
 title(strcat('Frequency Spectrum of CM EMI [','PRT1',']'));
-legend('BGN',Path4);
+legend('BGN','PRT1');
 ylim([-150 -70]);
 % % ylim([0 0.5e-6]);
 xlim([0 5]);

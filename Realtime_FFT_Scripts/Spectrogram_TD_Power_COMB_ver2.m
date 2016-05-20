@@ -11,14 +11,14 @@ close all;
 format long g;
 
 % Path for Averaged FFT data 
-Path1 = '/Users/manojgulati/Databin/MSMT_5Jan/Desktop-1/';
+Path1 = '/Users/manojgulati/Databin/MSMT_16Jan/DPS-Combined/';
 Path4 = 'EMI_Data/';
 Path2 = 'Data/';
 Path3 = 'Processed_EMI/';
 
 % Path for Smart meter data 
 Path5 = strcat(Path1,'Smart_Meter_Data/');
-Path6 = '13-January-2016.csv';
+Path6 = '18-January-2016.csv';
 
 % Load averaged and preprocessed FFT data
 load(strcat(Path1,Path4,Path3,'Processed_EMI','.mat'));
@@ -50,7 +50,7 @@ display(TS_Vector_Required(end));
 start_time = TS_Vector_Required(1);
 end_time = TS_Vector_Required(end);
 time_slot = end_time - start_time+1;
-clc;
+% clc;
 
 % find vector of time domain data
 x_begin = find(x2 == start_time);

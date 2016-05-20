@@ -12,7 +12,7 @@ close all;
 format long g;
 
 % Path for Averaged FFT data 
-Path1 = '/Users/manojgulati/Databin/MSMT_5Jan/Desktop-1/';
+Path1 = '/Users/manojgulati/Databin/MSMT_16Jan/DPS-Combined/';
 Path4 = 'EMI_Data/';
 Path2 = 'Data/';
 Path3 = 'Processed_EMI/';
